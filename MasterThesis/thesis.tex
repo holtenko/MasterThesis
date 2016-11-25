@@ -3,14 +3,14 @@
 %% thesis.tex
 %%==================================================
 
-\documentclass[master, fontset=windows, openright, twoside]{sjtuthesis}
+\documentclass[master, fontset=adobe, openright, twoside]{sjtuthesis}
 % \documentclass[%
 %   bachelor|master|doctor,	% 必选项
 %   fontset=adobe|windows,  	% 只测试了adobe
 %   oneside|twoside,		% 单面打印，双面打印(奇偶页交换页边距，默认)
 %   openany|openright, 		% 可以在奇数或者偶数页开新章|只在奇数页开新章(默认)
-%   zihao=-4|5,, 		% 正文字号：小四、五号(默认)
-%   review,	 		% 盲审论文，隐去作者姓名、学号、导师姓名、致谢、发表论文和参与的项目
+%   zihao=-4|5 		% 正文字号：小四、五号(默认)
+%   review	 		% 盲审论文，隐去作者姓名、学号、导师姓名、致谢、发表论文和参与的项目
 %   submit			% 定稿提交的论文，插入签名扫描版的原创性声明、授权声明 
 % ]
 
@@ -59,7 +59,12 @@
 
 %% 正文内容
 \pagestyle{main}
-\include{tex/chapter0}
+\include{tex/chapter0} %绪论
+\include{tex/chapter1} %基于农业物联网的智能温室架构
+\include{tex/chapter2} %温室CFD仿真建模与验证
+\include{tex/chapter3} %智能温室监测与控制系统
+\include{tex/chapter4} %智能温室的实践与应用
+\include{tex/chapter5} %结论
 
 \appendix	% 使用英文字母对附录编号，重新定义附录中的公式、图图表编号样式
 \renewcommand\theequation{\Alph{chapter}--\arabic{equation}}	
@@ -67,12 +72,12 @@
 \renewcommand\thetable{\Alph{chapter}--\arabic{table}}
 \renewcommand\thealgorithm{\Alph{chapter}--\arabic{algorithm}}
 
-%% 附录内容，本科学位论文可以用翻译的文献替代。
+%% 附录内容。
 \include{tex/app_eq}
 
 \backmatter	% 文后无编号部分 
 
-%% 参考资料
+%% 参考文献
 \printbibliography[heading=bibintoc]
 
 %% 致谢、发表论文、申请专利、参与项目、简历
