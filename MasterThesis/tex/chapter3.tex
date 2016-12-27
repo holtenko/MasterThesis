@@ -23,7 +23,7 @@
 		核心板由Texas Instruments公司的CC2530 SoC芯片、外围电路及天线组成，如\ref{fig:CC2530}所示。CC2530是用于2.4GHz IEEE 802.15.4和ZigBee应用的片上解决方案，集成了一块增强型8051MCU和一块射频芯片，具有系统内可编程闪存和8-KB RAM、最大256KB的Flash；结合了TI在业内领先的高性能RF收发器，内置4个不同功能的定时器，高度集成的片上系统提供了丰富的外设，只需少量的外部器件即可开发丰富的应用，满足低功耗设计的需求，适用于温室的控制和测量。
 		\begin{figure}[!htp]
   			\centering
- 			\includegraphics[width=0.8\textwidth]{05CoreBoard.png}
+ 			\includegraphics[width=0.5\textwidth]{05CoreBoard.png}
   			\bicaption[fig:CC2530]{CC2530核心板}{CC2530核心板}{Fig}{CC2530 core board}
 		\end{figure}
 		
@@ -38,7 +38,7 @@
 		本系统空气温度测量采用能隙式测温元件，具有响应快、尺寸小、非线性小、低功耗等优点，但不耐高温，适用于中低温区域的环境温度测量，符合温室内空气温度的监测要求；空气湿度测量采用电容聚合体测湿元件，具有灵敏度高、线性度好、稳定性该、响应速度快、重复性较好、温度系数较低等优点，符合温室内空气湿度的监测要求。
  		\begin{figure}[!htp]
   			\centering
- 			\includegraphics[width=0.8\textwidth]{06SHT15.png}
+ 			\includegraphics[width=0.3\textwidth]{06SHT15.png}
   			\bicaption[fig:SHT15]{SHT15温湿度传感器}{SHT15温湿度传感器}{Fig}{SHT15 humidity and temperature sensor}
 		\end{figure}
 		本系统选用SHT15温湿度一体传感器，如\ref{fig:SHT15}所示，集成了温度测量元件、湿度测量元件和ADC，通过串口电路直接输出已校准的数字信号，响应快、可以较好的屏蔽干扰。且其采用2.4~5.5V宽电压供电，可以适应不同的供电要求，休眠时电流低至0.3 ，测量电流仅为550 ，具有良好的低功耗性能，符合温室环境监测低功耗的设计需求。该传感器在室温下测量精度可达到±0.3 ℃和±2\%RH，分辨率8~12 bits可调，量程-40 ℃~123.8 ℃和0~100\%RH，且长期稳定性好，符合温室内空气温度和湿度的测量要求
@@ -48,7 +48,7 @@
 		一般情况下，温室内土壤温湿度分布均匀且变化缓慢，温室环境监测对于土壤温湿度的精度、灵敏度和测量范围要求不高，但是要求有较好的稳定性和线性，同时要可以适应各种复杂的土壤环境。
   		\begin{figure}[!htp]
   			\centering
- 			\includegraphics[width=0.8\textwidth]{07SMS50.png}
+ 			\includegraphics[width=0.3\textwidth]{07SMS50.png}
   			\bicaption[fig:SMS50]{SMS-II-50土壤温湿度传感器}{SMS-II-50土壤温湿度传感器}{Fig}{SMS-II-50 soil moisture and temperature sensor}
 		\end{figure}
 		本系统选用SMS-II-50土壤水分温度传感器，如\ref{fig:SMS50}所示，集成了一个MS10土壤湿度传感器和一个热电阻温度传感器，包含电源稳压器和防反接电路，采用环氧树脂外壳，可以达到IP68级防护，可直接插入或埋入土壤中，具有良好的抗氧化和耐腐蚀能力，符合温室中恶劣环境的使用需求。具体性能参数如\ref{tab:SMS50}所示。
@@ -57,12 +57,11 @@
   			\centering
   			\bicaption[tab:SMS50]{SMS-II-50性能参数表}{SMS-II-50性能参数表}{Table}{The performance parameters of SMS-II-50}
   			\begin{tabular}{lcc} \toprule
-    		\multicolumn{2}{c}{Item} \\ 
     		参数 & 土壤湿度 & 土壤温度 \\ \midrule
     		输出方式 & \multicolumn{2}{c}{0~2V模拟量/485输出} \\
-    		测量量程 & 0~100\%（体积含水量） & -40~80℃
-			测量精度 & ±5\% & ±0.5℃
-    		响应时间 & \multicolumn{2}{c}{< 1s} \\
+    		测量量程 & 0~100\%（体积含水量） & -40~80℃\\
+			测量精度 & ±5\% & ±0.5℃\\
+    		响应时间 & \multicolumn{2}{c}{<1s} \\
     		供电电压 & \multicolumn{2}{c}{3.0~3.6V} \\
     		最大功耗 & \multicolumn{2}{c}{40mA} \\
     		土壤水分监测区域 & \multicolumn{2}{c}{以探针为中心，直径7cm，高度7cm的圆柱形区域} \\
