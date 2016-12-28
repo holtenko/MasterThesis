@@ -79,7 +79,7 @@ ZigBee技术是一种基于IEEE 802.15.4标准的局域网通信技术，是WSNs
 		智能温室系统不仅需要对温室内的环境进行监测，还需要对室外的环境进行监测，两者结合才能更好地分析温室环境变化，更有效地对温室内环境进行控制。
   		\begin{figure}[!htp]
   			\centering
- 			\includegraphics[width=0.5\textwidth]{08WeatherStation.png}
+ 			\includegraphics[width=0.6\textwidth]{08WeatherStation.png}
   			\bicaption[fig:WeatherStation]{MULTI-6P六要素微型气象站和GZ-300太阳辐射传感器}{MULTI-6P六要素微型气象站和GZ-300太阳辐射传感器}{Fig}{MULTI-6P 6-elements miniature weather station and GZ-300 solar light intensity meter}
 		\end{figure}
 		本系统选用智翔宇仪器MULTI-6P 六参数微型气象站和GZ-300 太阳辐射传感器，结构外观如\ref{fig:WeatherStation}所示，可同时测量七种参数，如表2所示。其中微型气象站包括采用超声波风速传感器、风向传感器，压阻式大气压传感器，二极管结电压空气温度传感器，电容式空气湿度传感器，压电式雨量传感器；太阳辐射传感器利用光电效应对太阳辐射强度进行测量；详细参数见\ref{tab:WeatherStation}。微型气象站和太阳辐射传感器都采用一体化设计的金属外壳，抗污染和耐腐蚀性能强，采用紧凑和轻量化结构设计，易于安装拆卸，不需要现场维护和校准，可适应不同的工作环境。两者均采用12-30 V直流电源供电，可同时提供数字和模拟两种信号，其中数字信号输出为RS-485总线输出，供电和信号输入输出均通过底部航空插头，防护等级达到IP65级。
@@ -104,11 +104,22 @@ ZigBee技术是一种基于IEEE 802.15.4标准的局域网通信技术，是WSNs
 	
 本系统的底层ZigBee无线传感器网络基于Z-Stack协议栈开发，开发人员可以直接调用协议栈提供的API来实现相应的功能而无需深入了解完整的ZigBee协议等，可以极大程度上为开发工作提供便利，减少开发时间。
 	\begin{figure}[!htp]
-	    \centering
-	    \resizebox{6cm}{!}{\input{figure/example/flow_chart.tex}}
-	    \bicaption[fig:ZigBee]{自定义ZigBee通信流程}{自定义ZigBee通信流程}{Fig}{Self-defined ZigBee communication flow}
+		\centering
+	    \subfigure[协调器]{
+			\label{fig:zigbee:a} 
+			\includegraphics[width=0.25\textwidth]{zigbee/2.png}
+		}
+	    \subfigure[路由器]{
+			\label{fig:zigbee:b} 
+			\includegraphics[width=0.25\textwidth]{zigbee/1.png}
+		}
+		\subfigure[终端节点]{
+			\label{fig:zigbee:c}
+			\includegraphics[width=0.25\textwidth]{zigbee/3.png}
+		}
+	    \bicaption[fig:zigbee]{自定义ZigBee通信流程}{自定义ZigBee通信流程}{Fig}{Self-defined ZigBee communication flow}
 	\end{figure}
-在ZigBee网络中，协调器对于整个网络的组建、维护和管理，以及路由器的数据路由功能均由协议栈的功能函数实现的。通过在协议栈基础上制定自定义通信协议和流程，实现项目需要的协调器的广播指令、数据解析、数据缓存、与上层设备的串口通讯、终端节点的数据采集、低功耗休眠和唤醒、数据解析和打包、电池状态监测上传等功能。自定义ZigBee通信流程如\ref{fig:ZigBee}所示。
+在ZigBee网络中，协调器对于整个网络的组建、维护和管理，以及路由器的数据路由功能均由协议栈的功能函数实现的。通过在协议栈基础上制定自定义通信协议和流程，实现项目需要的协调器的广播指令、数据解析、数据缓存、与上层设备的串口通讯、终端节点的数据采集、低功耗休眠和唤醒、数据解析和打包、电池状态监测上传等功能。自定义ZigBee通信流程如\ref{fig:zigbee}所示。
 
 协调器建立网络后，随时等待处理路由器和终端节点的加入，并随时等待已加入网络的路由器和终端节点上传数据；当接收到上传的数据包时将执行数据包解析并将解析到的数据缓存到本地，同时通知上层程序获取数据；当接收到上层程序获取数据指令时，将缓存的数据上传至上层程序。
 
@@ -134,8 +145,8 @@ ZigBee技术是一种基于IEEE 802.15.4标准的局域网通信技术，是WSNs
 			状态码	 & 1	 & &  	ST\\
 			数据长度	 & 1	 &  & 	LEN\\
 			数据 & 	n & 	ASCII码 & 	DATA\\
-			校验码	1	 &  & 	XOR\\
-			包尾	1	 & 23（\#） & 	ED\\ \bottomrule
+			校验码	& 1	 &  & 	XOR\\
+			包尾	& 1	 & 23（\#） & 	ED\\ \bottomrule
  			\end{tabular}
 		\end{table}
 		
@@ -152,7 +163,7 @@ ZigBee技术是一种基于IEEE 802.15.4标准的局域网通信技术，是WSNs
 	感知控制层除了对温室环境进行监测之外，还需要对温室环境进行控制，主要通过控制温室内的作动器来实现。温室内作动器控制主要通过中央控制板完成，如\ref{fig:ControlBoard}所示为中央控制板及其功能框图，包括微控制器、RS485通讯接口、设备状态控制显示模块和电源管理模块。微控制器选用片上资源丰富STM32F103系列单片机，使用它的UART连接RS485模块完成与上层系统的通讯。设备控制利用继电器组实现。为保证设备的准确控制，控制板通过开关状态模块采集设备当前状态。控制板将当前设备状态与预设控制状态比对来分析现场设备或控制板的故障情况然后上报，以便系统能及时发现问题，满足本系统的自诊断需求。
 	\begin{figure}[!htp]
 		\centering
-		\includegraphics[width=0.6\textwidth]{09ControlBoard.png}
+		\includegraphics[width=0.7\textwidth]{09ControlBoard.png}
 		\bicaption[fig:ControlBoard]{中央控制板及其功能框图}{中央控制板及其功能框图}{Fig}{The photo and function diagram of the central control board}
 	\end{figure}
 	\subsection{图像采集模块}
@@ -171,35 +182,30 @@ ZigBee技术是一种基于IEEE 802.15.4标准的局域网通信技术，是WSNs
 Java是一种功能强大且简单易用的面向对象编程语言，开源社区活跃，拥有众多优秀的开源框架和类库，可以快速便捷地开发各种跨平台的应用程序。RXTX是一个可开源Java串口库，具有良好的跨平台性，且向下兼容javax.comm串口库。Spring是一个轻量级的依赖注入管理和面向切面编程的容器框架，可以简化企业级Java应用的开发，极大地提高开发者的开发效率。MyBatis是一款开源的优秀持久层框架，使用简单的注解或配置，即可将通过接口将Java中的POJOs映射成数据库中的记录。MySQL是一款开源的非常轻量级的关系型数据库管理系统，功能强大，性能良好，且具有较小的体积，在世界范围内得到广泛的应用。
 
 	\subsection{控制信息解析传输}
-	系统中的控制指令和反馈信息的双向传输，通过控制信息解析传输程序实现，该程序部署在Tomcat容器中。
-如\ref{fig:Control}所示，该程序的工作流程如下：
+系统中的控制指令和反馈信息的双向传输，通过控制信息解析传输程序实现，该程序部署在Tomcat容器中。
+	
+该程序的工作流程如\ref{fig:control}所示：
 	\begin{figure}[!htp]
-	    \centering
-	    \resizebox{6cm}{!}{\input{figure/example/flow_chart.tex}}
-	    \bicaption[fig:Control]{控制信息解析传输程序流程图}{控制信息解析传输程序流程图}{Fig}{Flow chart of control information transmission}
+		\centering
+		\includegraphics[width=0.8\textwidth]{control.png}
+		\bicaption[fig:control]{控制信息解析传输程序流程图}{控制信息解析传输程序流程图}{Fig}{Flow chart of control information transmission}
 	\end{figure}
 程序向外暴露RESTful WebService接口，为了保证系统控制的安全性，避免恶意操作和非法操作等，系统会对所有请求的来源和合法性进行判断，所有接口仅向云端服务器开放，即如果该请求不是来自于指定的云端服务器，或者请求是非法的，均会被视为无效请求，将被立即拒绝并返回相应的错误信息。随后系统会对请求进行身份和权限鉴定，以避免误操作可能对温室设备带来的损坏，如果请求发起者没有相关操作的权限，请求将会被拒绝并返回相应的错误信息。随后系统根据不同的请求类型分别执行相应的动作，若操作成功则返回成功响应，否则返回响应的错误信息并向管理员发送告警通知。
 
 	\subsection{数据采集上传}
 	传感器网络的数据监测和同步上传，通过数据采集上传程序实现，程序的具体工作流程如下：
 	\begin{figure}[!htp]
-		\subfigure[这是第一幅图]{
-			\label{fig:Sampling:a} %% 第一幅图的标签
-			\resizebox{6cm}{!}{\input{figure/example/flow_chart.tex}}
-		}
-		\subfigure[这是第一幅图]{
-			\label{fig:Sampling:b} %% 第一幅图的标签
-			\resizebox{6cm}{!}{\input{figure/example/flow_chart.tex}}
-		}
-		\bicaption[fig:Sampling]{数据采集上传程序流程图}{数据采集上传程序流程图}{Fig}{Flow chart of data sampling and uploading}
+		\centering
+		\includegraphics[width=1\textwidth]{thread/thread.png}
+		\bicaption[fig:thread]{数据采集上传程序流程图}{数据采集上传程序流程图}{Fig}{Flow chart of data sampling and uploading}
 	\end{figure}
-首先程序将会去发现可用的串口设备，随后打开串口监听并保持，当监听到有效数据时将字节装入IO Buffer，如\ref{fig:Sampling:a}所示。
+首先程序将会去发现可用的串口设备，随后打开串口监听并保持，当监听到有效数据时将字节装入IO Buffer，如\ref{fig:thread}a所示。
 
 然后为了解决由于串口数据上传不完整而导致的数据包丢失问题，程序将同时启动如下四个线程，并采用生产者消费者的设计模式：
 	\begin{enumerate}
-		\item 串口读取线程。当串口IO Buffer中有缓存数据时，线程将从IO Buffer中读取字节流，并填入字节队列中，当IO Buffer无数据为空时，线程将阻塞等待。详细流程如\ref{fig:Sampling:b}所示。
-		\item 数据打包线程。当字节队列中有数据时，线程从字节队列中读取字节并判断字节的类型：当读到包头字节即起始符时进入打包状态；当读到包尾字节即终止符时完成打包并对数据包进行校验，校验通过后装入数据包队列，否则丢弃并恢复普通状态；当读到其它字节时如果处于打包状态则将字节装入数据包，否则丢弃该字节。字节队列使用无限阻塞队列，意味着当字节队列为空时，线程继续从队列中获取对象将阻塞等待；如果队列中还存在未处理完成的字节时，读入的字节将添加在队列尾部。详细流程如\ref{fig:Sampling:b}所示。
-		\item 数据包解析线程，当数据包队列中有数据包时，线程将从数据包队列中读取数据包并判断数据包的类型：当读到采集提示包时将向下层协调器发送数据采集指令；当读到数据包时则对数据包进行校验，校验通过后解析数据包并持久化到数据库，否则丢弃。数据包队列同样使用无限阻塞队列，数据包队列为空时，线程将阻塞等待。详细流程如\ref{fig:Sampling:b}所示。
+		\item 串口读取线程。当串口IO Buffer中有缓存数据时，线程将从IO Buffer中读取字节流，并填入字节队列中，当IO Buffer无数据为空时，线程将阻塞等待。详细流程如\ref{fig:thread}b所示。
+		\item 数据打包线程。当字节队列中有数据时，线程从字节队列中读取字节并判断字节的类型：当读到包头字节即起始符时进入打包状态；当读到包尾字节即终止符时完成打包并对数据包进行校验，校验通过后装入数据包队列，否则丢弃并恢复普通状态；当读到其它字节时如果处于打包状态则将字节装入数据包，否则丢弃该字节。字节队列使用无限阻塞队列，意味着当字节队列为空时，线程继续从队列中获取对象将阻塞等待；如果队列中还存在未处理完成的字节时，读入的字节将添加在队列尾部。详细流程如\ref{fig:thread}c所示。
+		\item 数据包解析线程，当数据包队列中有数据包时，线程将从数据包队列中读取数据包并判断数据包的类型：当读到采集提示包时将向下层协调器发送数据采集指令；当读到数据包时则对数据包进行校验，校验通过后解析数据包并持久化到数据库，否则丢弃。数据包队列同样使用无限阻塞队列，数据包队列为空时，线程将阻塞等待。详细流程如\ref{fig:thread}d所示。
 		\item 采集指令发送线程，该线程会定时向室外气象站和太阳辐射强度传感器发送数据采集指令。
 	\end{enumerate}
 	
@@ -261,20 +267,39 @@ WEB页面使用HTML5 + CSS3 + JavaScript开发，使用Node.js作为JavaScript�
 移动客户端使用React Native开发，React Native同样是Facebook开源的一套前端应用技术框架，开发者通过React Native可利用JS和React创建原生移动应用，并且可复用大部分代码同时生成Android平台和IOS平台应用。移动应用同样调用应用层提供的接口获得返回数据，然后经过解析展示到界面。
 	\begin{figure}[!htp]
 		\centering
-		\includegraphics[width=0.8\textwidth]{14Design.png}
-		\bicaption[fig:Design]{终端程序界面设计}{终端程序界面设计}{Fig}{UI design of the terminal program}
+	    \subfigure[温室选择页]{
+			\label{fig:ui:a} 
+			\includegraphics[width=0.18\textwidth]{UIDesign/home.jpg}
+		}
+	    \subfigure[温室详情页]{
+			\label{fig:ui:b} 
+			\includegraphics[width=0.18\textwidth]{UIDesign/detail.jpg}
+		}
+		\subfigure[历史曲线页]{
+			\label{fig:ui:c}
+			\includegraphics[width=0.18\textwidth]{UIDesign/history.jpg}
+		}
+		\subfigure[温室控制页]{
+			\label{fig:ui:d}
+			\includegraphics[width=0.18\textwidth]{UIDesign/video.jpg}
+		}
+		\subfigure[温室实景页]{
+			\label{fig:ui:e}
+			\includegraphics[width=0.18\textwidth]{UIDesign/control.jpg}
+		}
+	    \bicaption[fig:ui]{终端程序界面设计}{终端程序界面设计}{Fig}{UI design of the terminal program}
 	\end{figure}
-本次系统所有终端程序，包括WEB页面和移动客户端应用，均使用相同的UI和功能设计，设计图如\ref{fig:Design}所示，主要分为温室选择页、温室详情页、历史曲线页、温室控制页、温室实景页等页面。
+本次系统所有终端程序，包括WEB页面和移动客户端应用，均使用相同的UI和功能设计，设计图如\ref{fig:ui}所示，主要分为温室选择页、温室详情页、历史曲线页、温室控制页、温室实景页等页面。
 
-温室选择页，如\ref{fig:Design}所示，用以显示所有的温室，并可选择任意温室进入。该页面上部可以查看当前温室地区的天气情况，下部列出所有的温室，并显示温室当前种植的作物图标、温室名称、温室类型、是否可以远程控制、是否有视频服务、是否有图像服务，以及温室当前的室内环境概况。
+温室选择页，如\ref{fig:ui:a}所示，用以显示所有的温室，并可选择任意温室进入。该页面上部可以查看当前温室地区的天气情况，下部列出所有的温室，并显示温室当前种植的作物图标、温室名称、温室类型、是否可以远程控制、是否有视频服务、是否有图像服务，以及温室当前的室内环境概况。
 
-温室详情页，如\ref{fig:Design}所示，用以显示所查看温室内的详细情况。该页面上部可查看当前温室室外环境参数，然后是温室室内的环境参数，若温室可控制则会显示温室作动器的控制状态，最下部显示温室当天的室内环境参数曲线。
+温室详情页，如\ref{fig:ui:b}所示，用以显示所查看温室内的详细情况。该页面上部可查看当前温室室外环境参数，然后是温室室内的环境参数，若温室可控制则会显示温室作动器的控制状态，最下部显示温室当天的室内环境参数曲线。
 
-历史曲线页，如\ref{fig:Design}所示，该页显示温室一周内、一月内和所有近期的室内参数历史数据曲线，目前仅可查询一年内的数据曲线。
+历史曲线页，如\ref{fig:ui:c}所示，该页显示温室一周内、一月内和所有近期的室内参数历史数据曲线，目前仅可查询一年内的数据曲线。
 
-温室控制页，如\ref{fig:Design}所示，如果温室可远程控制，则温室控制页可用，否则该页不可进入，用于远程控制温室内的作动器。该页面上部分别显示温室外和温室内的环境参数，中间为用于远程控制的按钮，下部为当前温室的控制历史日志。
+温室控制页，如\ref{fig:ui:d}所示，如果温室可远程控制，则温室控制页可用，否则该页不可进入，用于远程控制温室内的作动器。该页面上部分别显示温室外和温室内的环境参数，中间为用于远程控制的按钮，下部为当前温室的控制历史日志。
 
-温室实景页，如\ref{fig:Design}所示，用于查看温室的当前视频和图像。如果温室视频服务可用的话则上部显示视频播放窗口，否则不显示；如果温室图像服务可用的话则显示近七天的图片，否则不显示，该部分图片既可以是温室摄像头自动捕获，也可以是人工上传；如果温室视频服务和图像服务都不可用则该页面不可进入。
+温室实景页，如\ref{fig:ui:e}所示，用于查看温室的当前视频和图像。如果温室视频服务可用的话则上部显示视频播放窗口，否则不显示；如果温室图像服务可用的话则显示近七天的图片，否则不显示，该部分图片既可以是温室摄像头自动捕获，也可以是人工上传；如果温室视频服务和图像服务都不可用则该页面不可进入。
 	\subsection{本章小结}
 本章按照系统架构设计的层次划分，以及各层次的概要设计，对每个层次进行了详细的设计，并基本实现完成。
 

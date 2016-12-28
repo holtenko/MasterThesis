@@ -45,14 +45,14 @@
 本文设计的基于农业物联网的智能温室系统由底向上划分为感知控制层、网络传输层和应用层，符合物联网的通用层次定义，另外为了兼容各类终端和系统的接入添加了终端接入层，如\ref{fig:System}所示。	
 	\begin{figure}[!htp]
 		\centering
-		\includegraphics[width=0.5\textwidth]{03ArchitectureSystem.png}
+		\includegraphics[width=0.6\textwidth]{03ArchitectureSystem.png}
 		\bicaption[fig:System]{智能温室系统整体架构}{智能温室系统整体架构}{Fig}{Architecture of the intelligent greenhouse system.}
 	\end{figure}	
 \section{感知控制层}
 感知控制层主要用于获取需要监测及用于控制的各类温室环境参数数据，以及对温室现场的作动器进行控制以达到控制温室内环境参数的目的。本层通过现场采集控制系统实现，其总体设计如\ref{fig:Sensing}所示。针对农业特殊的生产环境，本层适合使用可靠性高、稳定性强、灵活性大、易于扩展的传感器网络采集温室环境参数数据，如基于RS485总线的有线传感器网络、基于ZigBee的无线传感器网络等。
 	\begin{figure}[!htp]
 		\centering
-		\includegraphics[width=0.6\textwidth]{04Sensing.png}
+		\includegraphics[width=0.7\textwidth]{04Sensing.png}
 		\bicaption[fig:Sensing]{智能温室系统整体架构}{智能温室系统整体架构}{Fig}{Architecture of the intelligent greenhouse system.}
 	\end{figure}
 

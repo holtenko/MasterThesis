@@ -117,6 +117,7 @@ OKUSHIMA等首次应用CFD研究温室的通风问题，开拓了定量分析温
 	\end{equation}
 其中$C_{\mu}$、$C_{\varepsilon 1}$、$C_{\varepsilon 2}$、$\sigma_k$、$\sigma_{\varepsilon}$为常数，$\mu_t =\rho C_{\mu} \frac{k^2}{\varepsilon}$，
 $P_k=\mu_t(\nabla \mathbf(u):(\mathbf(u)+(\mathbf(u))^T))-\frac{2}{3}(\nabla \mathbf(u))^2)-\frac{2}{3}\rho k \nabla \cdot \mathbf(u)$。
+
 但是标准 湍流模型是针对充分发展的湍流流动建立的，不适用于湍流发展不充分的近壁面区域，因此需要引入壁面函数法解决该问题。壁面函数法即在湍流核心区采用标准 湍流模型求解，而在壁面区借助一组半经验公式，将壁面区与核心区的求解变量关联起来，这样不用对壁面区进行求解也可以得到与壁面区域相邻节点的变量值了。
 	\subsection{仿真软件}
 	目前对于CFD仿真计算，比较常见的计算仿真软件有FLUENT、CFX、COMSOL Multiphysics等，但是FLUENT、CFX等均作为CFD计算求解器存在，还需要配合GAMBIT等前处理软件和TECPLOT等后处理软件使用，COMSOL Multiphysics提供整个流程的解决方案，几何建模、前处理、求解和后处理之间无缝结合，因此本文CFD仿真使用COMSOL Multiphysics 5.2作为仿真软件。
@@ -135,7 +136,7 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 在COMSOL Multiphysics中按照1:1的比例建立温室的几何模型，如\ref{fig:Geometrical}所示。
 	\begin{figure}[!htp]
 		\centering
-		\includegraphics[width=0.5\textwidth]{16Geometrical.png}
+		\includegraphics[width=0.7\textwidth]{16Geometrical.png}
 		\bicaption[fig:Geometrical]{温室几何模型}{温室几何模型}{Fig}{Geometrical model of the greenhouse}
 	\end{figure}
 本模型为减少计算量，提高计算速度，根据研究侧重点和温室特点对温室几何模型做出如下合理的简化：
@@ -242,7 +243,7 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 一般情况下，七月下旬至八月上旬，上海地区的气温达到全年的最高值，该段时间内对于温室的降温尤为重要。本次实验的实验时间为2016年7月31日，天气晴朗，室外温度较高且相对平稳。实验开始时间为13:10，温度为一天中最高的阶段，室外气温达到36℃以上，此时仅依靠自然通风等手段已经无法将温度降至32℃以下。研究表明，室内气温达到32℃以上将对作物的生长产生较大的影响，此时需要开启湿帘-风机进行机械通风降温。实验期间温室外遮阳网保持打开。
 	\begin{figure}[!htp]
 		\centering
-		\includegraphics[width=0.5\textwidth]{18Distribution.png}
+		\includegraphics[width=0.7\textwidth]{18Distribution.png}
 		\bicaption[fig:Distribution]{温室内传感器节点分布图}{温室内传感器节点分布图}{Fig}{Distribution of sensors in the greenhouse}
 	\end{figure}
 实验期间，温室内所有传感器测点每20 s记录一次数据。温室内外共布置30个测量节点，具体分布如\ref{fig:Distribution}所示。传感器编号方式如\ref{fig:Distribution}所示，距离湿帘4、12、24 m位置处分别编号A、B、C，距离地面1.3 m和2 m位置处分别编号H、L，自北向南每栋编号1、2、3、4、5，除HA1、HC1、HA5、HC5外，其余位置各布置一个节点；另外分别在紧邻湿帘内外正中间位置处，东西两侧各布置一个节点，如\ref{fig:Distribution}所示的P1、P2、P3、P4点。为避免温室等建筑物对于室外气象站的影响，室外气象站布置在距离温室10 m处的空旷区域，安装在距离地面10 m处的位置，距离温室较远且体积较小，因此未在图中标出。
@@ -328,7 +329,7 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 \ref{fig:T2}所示为实验条件下机械通风过程中截面2的温度瞬态分布云图。从图中可以看出：整个通风过程中，地面附近温度相对较高，主要因为这些地方受到强烈的太阳辐射的影响；顶棚附近温度较高，主要因为受太阳辐射和热浮力的共同影响。同时还可以观察到机械通风过程中，风机将温室内热空气抽出产生负压，空气从湿帘处进入温室，经过湿帘将显热转化为潜热形成温度较低的冷空气，形成的冷空气在向前推进的过程中，冷空气会包裹温室内原有的暖空气形成温度漩涡，未及时推动的暖空气会被卷入其中，在冷空气流中不断进行热交换并向前移动，直至到达风机端处排出。
 	\begin{figure}[!htp]
 		\centering
-		\includegraphics[width=0.8\textwidth]{24T2.png}
+		\includegraphics[width=0.5\textwidth]{24T2.png}
 		\bicaption[fig:T2]{截面2温度瞬态分布云图}{截面2温度瞬态分布云图}{Fig}{Transient distribution of temperature at Section 2}
 	\end{figure}
 \ref{fig:VL}所示为实验条件下机械通风过程中截面L的温度瞬态分布云图。从图中可以看出：整个通风过程中，四周壁面附近温度相对较高，主要因为这些地方受到强烈的太阳辐射的影响。由于温度漩涡的存在，水平面上冷空气流在向前推进的过程中会产生断裂，由图28也可观察到这一现象的发生过程。由于气流将热空气携带至风机口处排出，同时受到风机处边界的阻碍，导致风机口处的空气温度相对较高。另外，由于温室中间推拉门的存在，形成了两套湿帘之间的不连续，从而使温室水平方向中间部分的通风效果较差，导致该区域的降温效果也较差。在\ref{fig:T2}和\ref{fig:TL}中还可以看出，受温室边界及热浮力的影响，温室各角落温度相对较高。
