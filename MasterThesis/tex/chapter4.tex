@@ -31,31 +31,70 @@ OKUSHIMA等首次应用CFD研究温室的通风问题，开拓了定量分析温
 		\subsubsection{基本控制方程}
 所有的流体流动都遵循基本的守恒定律，包括质量守恒定律、动量守恒定律、能量守恒定律，对于多组分的流体流动还需要遵循组分守恒定律。
 
-自然任何自然现象，包括流体流动，都满足质量守恒定律，由质量守恒定律可以得到质量守恒方程，也称为连续性方程，如式(1)所示：
+自然任何自然现象，包括流体流动，都满足质量守恒定律，由质量守恒定律可以得到质量守恒方程，也称为连续性方程，如式\ref{eqn:zhiliang}所示：
+	\begin{equation}
+		\label{eqn:zhiliang}
+		\frac{\partial\rho}{\partial t}+\frac{\partial \rho u}{\partial x}+\frac{\partial \rho v}{\partial y}+\frac{\partial \rho w}{\partial z}=0
+	\end{equation}
 
-引入散度符号 可表示为式(2):
+引入散度符号$\nabla$可表示为式\ref{eqn:zhiliang1}
+	\begin{equation}
+		\label{eqn:zhiliang1}
+		\frac{\partial\rho}{\partial t}+\nabla \cdot (\rho \mathbf{u}) =0
+	\end{equation}
+其中$\rho$为流体密度，$t$为时间，$\mathbf{u}$为速度矢量。
 
-其中 为流体密度， 为时间， 为速度矢量。
-
-对于不可压流体，密度 可看作常数，可得式(3)；对于稳态流动，密度 不随时间变化，可得式(4)。
-
-动量守恒定律也是任何流体流动都必须遵循的基本物理定律，由该定律可得 、 、 三个方向的动量守恒方程如式(5)所示：
-
-其中 为流体微元体上的压力， 为作用在微元体表面上的黏性应力的分量， 、 、 为微元体上的体积力，在只存在重力的情况下，且规定 轴竖直向上时，则有 、 、 。
+对于不可压流体，密度$\rho$可看作常数，可得式\ref{eqn:zhiliangRho}；对于稳态流动，密度$\rho$不随时间变化，可得式\ref{eqn:zhiliangRhoCon}。
+	\begin{equation}
+		\label{eqn:zhiliangRho}
+		\nabla \cdot \mathbf{u} =0
+	\end{equation}
+	\begin{equation}
+		\label{eqn:zhiliangRhoCon}
+		\nabla \cdot (\rho \mathbf{u}) =0
+	\end{equation}
+动量守恒定律也是任何流体流动都必须遵循的基本物理定律，由该定律可得$x$、$y$、$z$三个方向的动量守恒方程如式(5)所示：
+	\begin{equation}
+		\label{eqn:dongliang}
+		\left\{
+		\begin{aligned}
+		\frac{\partial \rho u}{\partial t}+\nabla \cdot (\rho u \mathbf{u}) = - \frac{\partial \rho}{\partial x}+\frac{\partial \tau_{xx}}{\partial x}+\frac{\partial \tau_{yx}}{\partial y}+\frac{\partial \tau_{zx}}{\partial z} + F_x \\
+		\frac{\partial \rho v}{\partial t}+\nabla \cdot (\rho v \mathbf{u}) = - \frac{\partial \rho}{\partial y}+\frac{\partial \tau_{xy}}{\partial x}+\frac{\partial \tau_{yy}}{\partial y}+\frac{\partial \tau_{zy}}{\partial z} + F_y \\
+		\frac{\partial \rho w}{\partial t}+\nabla \cdot (\rho w \mathbf{u}) = - \frac{\partial \rho}{\partial z}+\frac{\partial \tau_{xz}}{\partial x}+\frac{\partial \tau_{yz}}{\partial y}+\frac{\partial \tau_{zz}}{\partial z} + F_z 
+		\end{aligned}
+		\right.
+	\end{equation}
+其中$p$为流体微元体上的压力，$\tau_{ii}$为作用在微元体表面上的黏性应力的分量，$F_x$、$F_y$、$F_z$为微元体上的体积力，在只存在重力的情况下，且规定$z$轴竖直向上时，则有$F_x=0$、$F_y=0$、$F_z=\rho g$。
 
 对于牛顿流体，黏性应力与流体的变形率成比例，可得如下动量守恒方程，即著名的Navier-Stokes(N-S)方程，如式(6)所示：
-
-其中， 为动力黏度， 、 、 为方程的广义源项，有 ， ， ，一般情况下， 、 、 都为小量，对于不可压流体， 。
+	\begin{equation}
+		\label{eqn:ns}
+		\left\{
+		\begin{aligned}
+		\frac{\partial \rho u}{\partial t}+\nabla \cdot (\rho u \mathbf{u}) =- \frac{\partial \rho}{\partial x}+\nabla \cdot (\mu \nabla \cdot u ) + S_x \\
+		\frac{\partial \rho v}{\partial t}+\nabla \cdot (\rho v \mathbf{u}) =- \frac{\partial \rho}{\partial y}+\nabla \cdot (\mu \nabla \cdot v ) + S_y \\
+		\frac{\partial \rho w}{\partial t}+\nabla \cdot (\rho w \mathbf{u}) =- \frac{\partial \rho}{\partial z}+\nabla \cdot (\mu \nabla \cdot w ) + S_z 
+		\end{aligned}
+		\right.
+	\end{equation}
+其中，$\mu$为动力黏度，$S_x$、$S_y$、$S_z$为方程的广义源项，有 $S_x=F_x+s_x$、$S_y=F_y+s_y$、$S_z=F_z+s_z$，一般情况下，$s_x$、$s_y$、$s_z$都为小量，对于不可压流体，$s_x=s_y=s_z=0$。
 
 对于存在能量交换的物理问题还必须遵循能量守恒定律，存在能量交换的流体流动问题也是如此，由该定律可得能量守恒方程，对于牛顿流体，如式(7)所示：
-
-其中 为恒压比热容， 为热力学温度， 为热通量矢量， 为能量源项。
+	\begin{equation}
+		\label{eqn:heat}
+		\rho C_p (\frac{\partial T}{\partial t}+(\mathbf{u} \cdot \nabla) T + \nabla \cdot \mathbf{q}  =Q
+	\end{equation}
+其中$C_p$为恒压比热容，$T$为热力学温度，$\mathbf{q}$为热通量矢量，$Q$为能量源项。
 
 对于存在物质交换的流体流动问题中，每种组分还必须要满足组分守恒定律，由该定律可得组分守恒方程，如式(8)所示：
-
-其中 为组分 的浓度， 为组分 的扩散系数， 为单位时间内系统内单位体积通过化学反应生成的组分 的量。
+	\begin{equation}
+		\label{eqn:conc}
+		\frac{\partial c_i}{\partial t}+\mathbf{u} \cdot \nabla c_i = \nabla \cdot (D_i \nabla c_i ) + R_i
+	\end{equation}
+其中$c_i$为组分$i$的浓度，$D_i$为组分$i$的扩散系数，$R_i$为单位时间内系统内单位体积通过化学反应生成的组分$i$的量。
 		\subsubsection{温室流体流动问题的简化}
 研究表明，对于气体流速较小，一般为50 m/s以下，压强梯度不大时，气体流体可以看作不可压流体。通常情况下，温室内植物生产区域的气流速度不宜过高，一般低于2 m/s，因此温室中的流体为低速流动，可看作不可压流体。另外，在仿真中可以假设温室内气体为连续、稳定的牛顿流体，并忽略黏性发热和压力功。而且一般可假设气体的各组分之间无化学反应。
+
 		\subsubsection{湍流模型的选择}
 湍流是一种即使边界条件不发生变化，流动也处于不稳定的状态，各个流动相关的变量随机发生变化。根据流动实验结果，当雷诺数（Reynolds数，简称Re数）大于另一个临界值时，流体流动将变得混乱，出现不同尺度的涡，此时流体流动为湍流。
 
@@ -68,8 +107,16 @@ OKUSHIMA等首次应用CFD研究温室的通风问题，开拓了定量分析温
 目前，非直接数值计算对于解决实际工程问题使用最为广泛的为Reynolds平均法，该方法可以用相对小的计算量得到相对精确的计算结果。
 
 本文选用工程上广泛使用的Reynolds平均法中的标准 湍流模型进行温室通风仿真。该模型引入了湍动能 方程，如式(9)所示，和湍流耗散率 方程，如式(10)所示。
-
-其中 、 、 、 、 为常数， ， 。
+	\begin{equation}
+		\label{eqn:k}
+		\rho \frac{\partial k}{\partial t}+\rho \mathbf{u} \cdot \nabla k = \nabla \cdot ((\mu + \frac{\mu_t}{\sigma_k}) \nabla k) -\rho \varepsilon +P_k
+	\end{equation}
+	\begin{equation}
+		\label{eqn:e}
+		\rho \frac{\partial \varepsilon}{\partial t}+\rho \mathbf{u} \cdot \nabla \varepsilon = \nabla \cdot ((\mu + \frac{\mu_t}{\sigma_{\varepsilon}}) \nabla \varepsilon ) +C_{\varepsilon 1} \frac{\varepsilon}{k} P_k - C_{\varepsilon 2} \rho \frac{\varepsilon^2}{k}
+	\end{equation}
+其中$C_{\mu}$、$C_{\varepsilon 1}$、$C_{\varepsilon 2}$、$\sigma_k$、$\sigma_{\varepsilon}$为常数，$\mu_t =\rho C_{\mu} \frac{k^2}{\varepsilon}$，
+$P_k=\mu_t(\nabla \mathbf(u):(\mathbf(u)+(\mathbf(u))^T))-\frac{2}{3}(\nabla \mathbf(u))^2)-\frac{2}{3}\rho k \nabla \cdot \mathbf(u)$。
 但是标准 湍流模型是针对充分发展的湍流流动建立的，不适用于湍流发展不充分的近壁面区域，因此需要引入壁面函数法解决该问题。壁面函数法即在湍流核心区采用标准 湍流模型求解，而在壁面区借助一组半经验公式，将壁面区与核心区的求解变量关联起来，这样不用对壁面区进行求解也可以得到与壁面区域相邻节点的变量值了。
 	\subsection{仿真软件}
 	目前对于CFD仿真计算，比较常见的计算仿真软件有FLUENT、CFX、COMSOL Multiphysics等，但是FLUENT、CFX等均作为CFD计算求解器存在，还需要配合GAMBIT等前处理软件和TECPLOT等后处理软件使用，COMSOL Multiphysics提供整个流程的解决方案，几何建模、前处理、求解和后处理之间无缝结合，因此本文CFD仿真使用COMSOL Multiphysics 5.2作为仿真软件。
@@ -78,19 +125,19 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 
 	\subsection{几何建模}
 本文CFD仿真研究对象为我国南方典型连栋塑料温室，位于上海市崇明岛（E121.74°,N31.50°），温室如\ref{fig:House}所示。
- 	  	\begin{figure}[!htp]
-  			\centering
- 			\includegraphics[width=0.8\textwidth]{15House.png}
-  			\bicaption[fig:House]{南方连栋塑料温室}{南方连栋塑料温室}{Fig}{Multi-span plastic greenhouse in Southern China}
-		\end{figure}
+	\begin{figure}[!htp]
+		\centering
+		\includegraphics[width=0.3\textwidth]{15House.png}
+		\bicaption[fig:House]{南方连栋塑料温室}{南方连栋塑料温室}{Fig}{Multi-span plastic greenhouse in Southern China}
+	\end{figure}
 温度顶高5 m，肩高3 m，屋脊方向为东西走向，长度32 m，单栋跨度8 m，共5栋，总宽度40米。温室西墙安装湿帘，湿帘高度为1.8 m，中心位置安装高度为1.3 m，每套长度为17 m，温室南北两侧各一套，中间为2 m宽的推拉门。温室东墙安装10台YS1250型重锤式负压风机，每栋两台，风机直径为1250 mm，中心位置安装高度为1.5 m，电机功率为1.1 kW，单台排风量 为40000 m3/h。温室主体采用结构钢，四周及顶部覆盖聚乙烯薄膜，薄膜厚度为0.15 mm，透光率大于（等于）90％，顶部安装遮阳网，采用专用优质缀铝外遮阳网布，遮阳率可达80\%。
 
 在COMSOL Multiphysics中按照1:1的比例建立温室的几何模型，如\ref{fig:Geometrical}所示。
- 	  	\begin{figure}[!htp]
-  			\centering
- 			\includegraphics[width=0.8\textwidth]{16Geometrical.png}
-  			\bicaption[fig:Geometrical]{温室几何模型}{温室几何模型}{Fig}{Geometrical model of the greenhouse}
-		\end{figure}
+	\begin{figure}[!htp]
+		\centering
+		\includegraphics[width=0.5\textwidth]{16Geometrical.png}
+		\bicaption[fig:Geometrical]{温室几何模型}{温室几何模型}{Fig}{Geometrical model of the greenhouse}
+	\end{figure}
 本模型为减少计算量，提高计算速度，根据研究侧重点和温室特点对温室几何模型做出如下合理的简化：
 	\begin{enumerate}
 		\item 温室表面的薄膜厚度仅有0.15 mm，在模型中可以忽略不计，因此几何模型中简化为无厚度的面。
@@ -116,11 +163,10 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 	\subsection{边界条件}
 	为获得温室机械通风过程的初始状态，从而研究机械通风过程及其升温过程，本文仿真过程分为湿帘风机关闭状态和开启状态。前者温室处于密闭环境，风机和湿帘处于关闭状态，用以计算自然对流状态下温室内的状态；后者风机和湿帘处于开启状态，进行机械通风过程仿真，用以计算湿帘风机对温室内环境分布和变化的影响。
 	
-本次仿真以温室内的空气为主要研究对象，所涉及的边界条件包括室外环境参数、温室四周薄膜和顶棚、风机、湿帘、室内地面等，设置见\ref{tab:Boundary}。由于关注的仿真过程时间较短，故可以忽略在此期间内各边界条件基本参数的变化，各算例基本参数设置见\ref{tab:Boundary}。
-
+本次仿真以温室内的空气为主要研究对象，所涉及的边界条件包括室外环境参数、温室四周薄膜和顶棚、风机、湿帘、室内地面等，设置见\ref{tab:boundary}。由于关注的仿真过程时间较短，故可以忽略在此期间内各边界条件基本参数的变化，各算例基本参数设置见\ref{tab:basicParameters}。
 		\begin{table}[!hpb]
   			\centering
-  			\bicaption[tab:Boundary]{CFD模型边界条件}{CFD模型边界条件}{Table}{Boundary condition used in the CFD model}
+  			\bicaption[tab:boundary]{CFD模型边界条件}{CFD模型边界条件}{Table}{Boundary condition used in the CFD model}
   			\begin{tabular}{ccccc} \toprule
 			类型	 & 边界 & 湍流场 & 	流体传热 & 	稀物质传递\\ \midrule
 			\multirow{5}{*}{关闭风机} & 四周围护 & 壁面 & 热通量、散射面 & 无通量\\ 
@@ -134,11 +180,10 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 												  & 风机 &  压力出口 & 	流出 & 	流出\\
 												  & 湿帘 & 速度入口	 & 温度 & 浓度\\ \bottomrule
  			\end{tabular}
-		\end{table}
-		
+		\end{table}	
 		\begin{table}[!hpb]
   			\centering
-  			\bicaption[tab:parameters]{基本参数设置}{基本参数设置}{Table}{Common parameters in the CFD model}
+  			\bicaption[tab:basicParameters]{基本参数设置}{基本参数设置}{Table}{Common parameters in the CFD model}
   			\begin{tabular}{cc} \toprule
 			参数 & 数值\\ \midrule
 			太阳辐射强度/（W·m-2） & 	832\\
@@ -156,21 +201,27 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 		\end{table}
 湿帘风机关闭状态下，即计算自然对流状态时，还需对温室整个计算域设置体积力域，用以计算空气密度因为受温度变化影响而带来的自然对流，并设置压力约束点以提供压力参考点。
 
-湿帘风机开启状态下，即计算机械通风过程时，入口风速计算式为：
+湿帘风机开启状态下，即计算机械通风过程时，入口风速计算见式\ref{eqn:input}：
+	\begin{equation}
+		\label{eqn:input}
+		v_{in} = \frac{n Q_{fan}}{S_{in}}
+	\end{equation}
+其中$v_{in}$为入口风速，$n$为开启风机的数量，$Q_{fan}$为单台风机的排风量，$S_{in}$为湿帘入口总面积。
 
-其中 为入口风速， 为开启风机的数量， 为单台风机的排风量， 为湿帘入口总面积。
-
-入口温度可根据湿帘降温模型计算：
-
-其中 为湿帘后干球温度， 为湿帘前干球温度， 为湿帘蒸发冷却换热效率， 为湿帘前湿球温度。
+入口温度可根据湿帘降温模型计算见式\ref{eqn:cool}：
+	\begin{equation}
+		\label{eqn:cool}
+		T_{in}=T_{out}-E (T_{out} - T_{w})
+	\end{equation}
+其中$T_{in}$为湿帘后干球温度，$T_{out}$为湿帘前干球温度，$E$为湿帘蒸发冷却换热效率，$T_w$为湿帘前湿球温度。
 
 	\subsection{网格划分和求解步骤}
 为研究机械通风条件下，整个温室内的空气温度时空分布和变化，本文CFD仿真计算选取整栋温室作为计算域。模型内部大部分区域采用自由剖分四面体网格进行划分，并在入口、出口和壁面边界处进行边界层加密，以适应该区域速度、温度和浓度梯度变化大的要求。为得到数值计算的网格无关解，反复尝试不同密度的网格，本次计算整个模型共划分743604域单元、59854边界单元和 2424边单元，如\ref{fig:Mesh}所示。
- 	  	\begin{figure}[!htp]
-  			\centering
- 			\includegraphics[width=0.8\textwidth]{17Mesh.png}
-  			\bicaption[fig:Mesh]{温室CFD模型网格划分}{温室CFD模型网格划分}{Fig}{Mesh of the greenhouse CFD model}
-		\end{figure}
+	\begin{figure}[!htp]
+		\centering
+		\includegraphics[width=0.5\textwidth]{17Mesh.png}
+		\bicaption[fig:Mesh]{温室CFD模型网格划分}{温室CFD模型网格划分}{Fig}{Mesh of the greenhouse CFD model}
+	\end{figure}
 本次仿真计算划分为若干个阶段：
 
 第1阶段进行湿帘风机关闭状态下的稳态求解，此阶段用以计算自然对流状态下温室内状态分布，为进行机械通风的仿真计算获得初始值，此阶段使用稳态求解器进行求解；
@@ -183,21 +234,21 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 
 \section{机械通风实验}
 	\subsection{实验平台}
-	本次实验的实验平台为本文设计并实现的智能温室系统，通过该系统平台实现室内的空气温湿度、土壤温湿度的测量，和室外的空气温湿度、太阳辐射强度等的测量。
+本次实验的实验平台为本文设计并实现的智能温室系统，通过该系统平台实现室内的空气温湿度、土壤温湿度的测量，和室外的空气温湿度、太阳辐射强度等的测量。
 	
 部分无需长期监测的数据如土壤表面温度和薄膜表面温度，本次实验采用单独的设备进行测量。土壤表面温度的测量采用CA380型手持红外测温仪，测量范围为-32~380℃，测量精度为±2℃；薄膜表面温度测量采用铂电阻PT100，测量范围为-200~200℃，测量精度为±0.15℃。
 
 	\subsection{实验方案}
-	一般情况下，七月下旬至八月上旬，上海地区的气温达到全年的最高值，该段时间内对于温室的降温尤为重要。本次实验的实验时间为2016年7月31日，天气晴朗，室外温度较高且相对平稳。实验开始时间为13:10，温度为一天中最高的阶段，室外气温达到36℃以上，此时仅依靠自然通风等手段已经无法将温度降至32℃以下。研究表明，室内气温达到32℃以上将对作物的生长产生较大的影响，此时需要开启湿帘-风机进行机械通风降温。实验期间温室外遮阳网保持打开。
-	 	\begin{figure}[!htp]
-  			\centering
- 			\includegraphics[width=0.8\textwidth]{18Distribution.png}
-  			\bicaption[fig:Distribution]{温室内传感器节点分布图}{温室内传感器节点分布图}{Fig}{Distribution of sensors in the greenhouse}
-		\end{figure}
+一般情况下，七月下旬至八月上旬，上海地区的气温达到全年的最高值，该段时间内对于温室的降温尤为重要。本次实验的实验时间为2016年7月31日，天气晴朗，室外温度较高且相对平稳。实验开始时间为13:10，温度为一天中最高的阶段，室外气温达到36℃以上，此时仅依靠自然通风等手段已经无法将温度降至32℃以下。研究表明，室内气温达到32℃以上将对作物的生长产生较大的影响，此时需要开启湿帘-风机进行机械通风降温。实验期间温室外遮阳网保持打开。
+	\begin{figure}[!htp]
+		\centering
+		\includegraphics[width=0.5\textwidth]{18Distribution.png}
+		\bicaption[fig:Distribution]{温室内传感器节点分布图}{温室内传感器节点分布图}{Fig}{Distribution of sensors in the greenhouse}
+	\end{figure}
 实验期间，温室内所有传感器测点每20 s记录一次数据。温室内外共布置30个测量节点，具体分布如\ref{fig:Distribution}所示。传感器编号方式如\ref{fig:Distribution}所示，距离湿帘4、12、24 m位置处分别编号A、B、C，距离地面1.3 m和2 m位置处分别编号H、L，自北向南每栋编号1、2、3、4、5，除HA1、HC1、HA5、HC5外，其余位置各布置一个节点；另外分别在紧邻湿帘内外正中间位置处，东西两侧各布置一个节点，如\ref{fig:Distribution}所示的P1、P2、P3、P4点。为避免温室等建筑物对于室外气象站的影响，室外气象站布置在距离温室10 m处的空旷区域，安装在距离地面10 m处的位置，距离温室较远且体积较小，因此未在图中标出。
 
 	\subsection{实验步骤}
-	根据实验方案，本次实验分别进行了开启关闭10台、6台和4台风机的机械通风实验。
+根据实验方案，本次实验分别进行了开启关闭10台、6台和4台风机的机械通风实验。
 	
 每组实验采用相同的实验步骤：
 	\begin{enumerate}
@@ -210,11 +261,19 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 	
 	\subsection{实验结果}
 	本文选取最具代表性的先后开启和关闭10台和4台风机情况下植物冠层即截面L典型位置处的实验结果进行分析，实验测得的温室内气温变化曲线如图23所示。
-		 \begin{figure}[!htp]
-  			\centering
- 			\includegraphics[width=0.8\textwidth]{19Result.png}
-  			\bicaption[fig:Result]{温室内植物冠层温度实测值}{温室内植物冠层温度实测值}{Fig}{Measured temperature inside the greenhouse at Section L}
-		\end{figure}
+	\begin{figure}[!htp]
+		\centering
+		\subfigure[截面2温度实测值]{
+			\includegraphics[width=0.8\textwidth]{result/01.png}
+		}
+		\subfigure[截面B温度实测值]{
+			\includegraphics[width=0.8\textwidth]{result/02.png}
+		}
+		\subfigure[风机开启情况]{
+			\includegraphics[width=0.8\textwidth]{result/03.png}
+		}
+ 		\bicaption[fig:Result]{温室内植物冠层温度实测值}{温室内植物冠层温度实测值}{Fig}{Measured temperature inside the greenhouse at Section L}
+ 	\end{figure}
 	如\ref{fig:Result}所示，由实验结果曲线可以看出，对于开启10台和4台风机的情况，各测点空气温度变化趋势基本一致，即开启风机时首先快速下降，随后缓慢下降，最后达到最低温度，并保持稳定。两者的差别体现在，开启10台风机的情况下，相较于开启4台风机的情况，空气温度下降速度较快，且纵向温度梯度较大，最终达到的稳定温度略低，横向分布较为均匀。关闭风机后，两种情况的空气温度上升趋势基本一致。
 	
 图\ref{fig:Result}所示为屋脊方向典型纵截面，即如\ref{fig:Distribution}所示截面2的实验结果，该截面的结果可以观察到与湿帘不同距离测点空气温度的变化情况，从结果中可以看出距离湿帘越近，空气温度下降越早，且最终达到的稳定温度越低。
@@ -222,47 +281,62 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 图\ref{fig:Result}所示为温室跨度方向典型横截面，即如\ref{fig:Distribution}所示截面B的实验结果，该截面的结果可以观察到每栋内测点空气温度的变化情况，可以看出受推拉门处造成的湿帘不连续的影响，第3栋降温效果最差，空气温度下降速度最慢，且最终达到的稳定温度最高。
 
 \section{模型验证}
-模型验证时选取实验参数作为边界条件参数，具体参数见表6中方案1的参数设置，即开启风机数量为10台，入口温度为30℃，温室长度为32 m，其它基本参数设置如表5所示。实验条件下，温室内植物冠层即截面L的典型截面即截面2和截面B中的各测点空气温度仿真值和实测值如图24所示，由于截面B具有对称性，因此图中仅展示B1、B2、B3测点结果。
-		 \begin{figure}[!htp]
-  			\centering
- 			\includegraphics[width=0.8\textwidth]{20Compare.png}
-  			\bicaption[fig:Compare]{温室内植物冠层温度实测值}{温室内植物冠层温度实测值}{Fig}{Measured temperature inside the greenhouse at Section L}
-		\end{figure}
+模型验证时选取实验参数作为边界条件参数，具体参数见\ref{tab:cases}中Case 1的参数设置，即开启风机数量为10台，入口温度为30℃，温室长度为32 m，其它基本参数设置如表5所示。实验条件下，温室内植物冠层即截面L的典型截面即截面2和截面B中的各测点空气温度仿真值和实测值如图24所示，由于截面B具有对称性，因此图中仅展示B1、B2、B3测点结果。
+	\begin{figure}[!htp]
+		\centering
+		\subfigure[截面2仿真值]{
+			\label{fig:Compare:a}
+			\includegraphics[width=0.4\textwidth]{compare/01.png}
+		}
+		\subfigure[截面2实测值]{
+			\label{fig:Compare:b}
+			\includegraphics[width=0.4\textwidth]{compare/02.png}
+		}
+		\subfigure[截面B仿真值]{
+			\label{fig:Compare:c}
+			\includegraphics[width=0.4\textwidth]{compare/03.png}
+		}
+		\subfigure[截面B实测值]{
+			\label{fig:Compare:d}
+			\includegraphics[width=0.4\textwidth]{compare/04.png}
+		}
+ 		\bicaption[fig:Compare]{植物冠层仿真温度与实测温度变化曲线}{植物冠层仿真温度与实测温度变化曲线}{Fig}{Curve of the simulated and measured temperature at Section L}
+ 	\end{figure}
 由\ref{fig:Compare}可知，在空气温度下降阶段，各测点的仿真值相比于对应实测值下降速率明显快，其主要原因是仿真模型是理想的密封环境，而实际温室存在不可避免的空气渗透问题。在稳定阶段两者基本一致，即各个截面的各测点位置的最终稳定温度基本一致。稳定阶段实测值仍会发生小范围内的波动，而仿真值则不会，其主要原因是仿真模型是理想的稳定环境，而实际温室中会存在各种各样不可避免的环境扰动，从而导致温度稳定后仍会发生一定的波动。变化过程中温度梯度也保持一致，即在截面2方向上，距离湿帘越近的位置空气温度下降越早，下降速率也较快，最终达到的稳定温度也较低，第1栋和第2栋温度基本一致，第3栋温度相对较高，且下降速度较慢。
-		 \begin{figure}[!htp]
-  			\centering
- 			\includegraphics[width=0.8\textwidth]{21error.png}
-  			\bicaption[fig:Error]{仿真值与实测值绝对误差分布}{仿真值与实测值绝对误差分布}{Fig}{Distribution of absolute error between the simulated and measured temperature}
-		\end{figure}
+	\begin{figure}[!htp]
+		\centering
+		\includegraphics[width=0.8\textwidth]{21error.png}
+		\bicaption[fig:Error]{仿真值与实测值绝对误差分布}{仿真值与实测值绝对误差分布}{Fig}{Distribution of absolute error between the simulated and measured temperature}
+	\end{figure}
 从风机开启至空气温度下降到稳定阶段，温室内所有测点的绝对误差，即实测值与仿真值之差，分布如\ref{fig:Error}所示。由图可知，误差较大的区域主要集中在空气温度快速下降阶段，其主要原因是温室仿真模型和实际温室的差异，即实际温室存在不可避免的空气渗透问题，导致实际情况下空气温度下降速率相较于仿真的理想状态略缓慢，由\ref{fig:Compare}也可观察到这一现象，从而导致在空气温度快速下降阶段误差较大。整个过程均方根误差为1.39℃，平均相对误差为2.63\%，稳定阶段均方根误差为0.53℃，平均相对误差为0.79\%。误差分析结果表明，仿真值和实测值虽存在一定的偏差，但整体温度场的分布和温度变化的趋势基本保持一致。因此，本文所建立的温室CFD仿真模型是有效的，仿真结果能够比较准确的显示温室气温的分布和变化。
 
 \section{机械通风过程分析}
 机械通风过程分析以实验条件为例进行分析，实验条件即为表6中的方案1条件，开启风机数量为10台，入口温度为30℃，温室长度为32 m，其它基本参数设置如表5所示。
-		 \begin{figure}[!htp]
-  			\centering
- 			\includegraphics[width=0.8\textwidth]{22V2.png}
-  			\bicaption[fig:V2]{截面2速度瞬态分布云图}{截面2速度瞬态分布云图}{Fig}{Transient distribution of velocity at Section 2}
-		\end{figure}
+
 \ref{fig:V2}所示为实验条件下机械通风过程中截面2的速度瞬态分布云图。从图中可以看出，受机械通风、热浮力共同作用，以及温室边界的限制，温室内气体流动可以看出明显的湍流现象。湿帘入口处空气流动较快，且速度变化较为剧烈，呈现明显的速度梯度，温室内部风速逐渐减弱，温室的上部和边角处速度较小。在机械通风的整个过程，外部空气从湿帘处进入温室从而带动温室内部的空气流动，首先会空气流会在温室内上下波动，达到稳定状态后在风机和湿帘的连线处形成一条空气流，并不断进行小范围内的上下波动。
-		 \begin{figure}[!htp]
-  			\centering
- 			\includegraphics[width=0.8\textwidth]{23VL.png}
-  			\bicaption[fig:VL]{仿真值与实测值绝对误差分布}{仿真值与实测值绝对误差分布}{Fig}{Distribution of absolute error between the simulated and measured temperature}
-		\end{figure}
+	\begin{figure}[!htp]
+		\centering
+		\includegraphics[width=0.5\textwidth]{22V2.png}
+		\bicaption[fig:V2]{截面2速度瞬态分布云图}{截面2速度瞬态分布云图}{Fig}{Transient distribution of velocity at Section 2}
+	\end{figure}
 \ref{fig:VL}所示为实验条件下机械通风过程中截面L的速度瞬态分布云图。可以看出风机出口处空气流动也较快，也呈现出较为明显的速度梯度。另外可以观察到，受温室推拉门的影响，温室中部风速明显较低，且基本不发生变化，通风效果较差。
 	\begin{figure}[!htp]
-  			\centering
- 			\includegraphics[width=0.8\textwidth]{24T2.png}
-  			\bicaption[fig:T2]{截面2温度瞬态分布云图}{截面2温度瞬态分布云图}{Fig}{Transient distribution of temperature at Section 2}
-		\end{figure}
+		\centering
+		\includegraphics[width=0.8\textwidth]{23VL.png}
+		\bicaption[fig:VL]{截面L速度瞬态分布云图}{截面L速度瞬态分布云图}{Fig}{Transient distribution of velocity at Section L}
+	\end{figure}
 \ref{fig:T2}所示为实验条件下机械通风过程中截面2的温度瞬态分布云图。从图中可以看出：整个通风过程中，地面附近温度相对较高，主要因为这些地方受到强烈的太阳辐射的影响；顶棚附近温度较高，主要因为受太阳辐射和热浮力的共同影响。同时还可以观察到机械通风过程中，风机将温室内热空气抽出产生负压，空气从湿帘处进入温室，经过湿帘将显热转化为潜热形成温度较低的冷空气，形成的冷空气在向前推进的过程中，冷空气会包裹温室内原有的暖空气形成温度漩涡，未及时推动的暖空气会被卷入其中，在冷空气流中不断进行热交换并向前移动，直至到达风机端处排出。
 	\begin{figure}[!htp]
-  			\centering
- 			\includegraphics[width=0.8\textwidth]{25TL.png}
-  			\bicaption[fig:TL]{截面L温度瞬态分布云图}{截面L温度瞬态分布云图}{Fig}{Transient distribution of temperature at Section L}
-		\end{figure}
+		\centering
+		\includegraphics[width=0.8\textwidth]{24T2.png}
+		\bicaption[fig:T2]{截面2温度瞬态分布云图}{截面2温度瞬态分布云图}{Fig}{Transient distribution of temperature at Section 2}
+	\end{figure}
 \ref{fig:VL}所示为实验条件下机械通风过程中截面L的温度瞬态分布云图。从图中可以看出：整个通风过程中，四周壁面附近温度相对较高，主要因为这些地方受到强烈的太阳辐射的影响。由于温度漩涡的存在，水平面上冷空气流在向前推进的过程中会产生断裂，由图28也可观察到这一现象的发生过程。由于气流将热空气携带至风机口处排出，同时受到风机处边界的阻碍，导致风机口处的空气温度相对较高。另外，由于温室中间推拉门的存在，形成了两套湿帘之间的不连续，从而使温室水平方向中间部分的通风效果较差，导致该区域的降温效果也较差。在\ref{fig:T2}和\ref{fig:TL}中还可以看出，受温室边界及热浮力的影响，温室各角落温度相对较高。
-
+	\begin{figure}[!htp]
+		\centering
+		\includegraphics[width=0.8\textwidth]{25TL.png}
+		\bicaption[fig:TL]{截面L温度瞬态分布云图}{截面L温度瞬态分布云图}{Fig}{Transient distribution of temperature at Section L}
+	\end{figure}
 \section{本章小结}
 本章针对机械通风降温而带来的能源消耗、生产成本较高的问题，和温室面积大带来的监测点较多、监测成本较高的问题，建立温室CFD仿真模型，对温室机械通风过程进行分析，为温室优化结构参数和通风设备配置，为基于农业物联网的智能温室监测与控制系统提供优化的监测点位置选择和机械通风控制策略。
 

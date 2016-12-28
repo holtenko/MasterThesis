@@ -1,8 +1,6 @@
 \begin{tikzpicture}[node distance=2cm]
     \node (pic) [startstop] {开始};
-    \node (bg) [io, below of=pic] {接收请求};
-    \node (threshold) [decision, below of=pair, yshift=-0.5cm] {多于阈值};
-    
+    \node (bg) [io, below of=pic] {接收请求}; 
     \node (pair) [process, below of=bg] {匹配特征点对};
     \node (threshold) [decision, below of=pair, yshift=-0.5cm] {多于阈值};
     \node (clear) [decision, right of=threshold, xshift=3cm] {清晰？};
