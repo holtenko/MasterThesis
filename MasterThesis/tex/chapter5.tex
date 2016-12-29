@@ -118,16 +118,22 @@
 	
 		\begin{table}[!htbp]
   			\centering
+  			 \begin{threeparttable}[b]
   			\bicaption[tab:strategies]{不同控制策略结果比较}{不同控制策略结果比较}{Table}{Comparison of results with different control strategies}
   			\begin{tabular}{cccc} \toprule
 			参数 & 策略1 & 策略2 & 策略3\\ \midrule
 			风机数量/个 & 10 & 10 & 4\\
-			间歇比 & 1 & 0.53 & 1\\
+			间歇比\tnote{1} & 1 & 0.53 & 1\\
 			等效风机数量/个 & 10 & 5.3 & 4\\
 			平均温度/℃ & 30.88 & 31.82 & 31.09\\
 			最高温度/℃ & 30.88 & 32.59 & 31.09\\
-			温度稳定性/℃ & <0.1 & <0.43 & <0.1\\ \bottomrule
+			温度稳定性\tnote{2}/℃ & <0.1 & <0.43 & <0.1\\ \bottomrule
  			\end{tabular}
+ 			\begin{tablenotes}
+    			\item [1] 间歇比指风机开启时间的占比。
+    			\item [2] 温度稳定性为完整周期内的温度均方根误差。
+   			 \end{tablenotes}
+  		\end{threeparttable}
 		\end{table}
 	由控制策略结果比较表可知：
 	

@@ -122,7 +122,7 @@ OKUSHIMA等\supercite{Okushima1989} 首次应用CFD研究温室的通风问题�
 		\rho \frac{\partial \varepsilon}{\partial t}+\rho \mathbf{u} \cdot \nabla \varepsilon = \nabla \cdot ((\mu + \frac{\mu_t}{\sigma_{\varepsilon}}) \nabla \varepsilon ) +C_{\varepsilon 1} \frac{\varepsilon}{k} P_k - C_{\varepsilon 2} \rho \frac{\varepsilon^2}{k}
 	\end{equation}
 其中$C_{\mu}$、$C_{\varepsilon 1}$、$C_{\varepsilon 2}$、$\sigma_k$、$\sigma_{\varepsilon}$为常数，$\mu_t =\rho C_{\mu} \frac{k^2}{\varepsilon}$，
-$P_k=\mu_t(\nabla \mathbf{u}:(\mathbf{u}+(\mathbf{u})^T))-\frac{2}{3}(\nabla \mathbf{u})^2)-\frac{2}{3}\rho k \nabla \cdot \mathbf{u}$。
+$P_k=\mu_t(\nabla \mathbf{u}:( \nabla \mathbf{u}+( \nabla \mathbf{u})^T))-\frac{2}{3}(\nabla \mathbf{u})^2)-\frac{2}{3}\rho k \nabla \cdot \mathbf{u}$。
 
 但是标准 湍流模型是针对充分发展的湍流流动建立的，不适用于湍流发展不充分的近壁面区域，因此需要引入壁面函数法解决该问题\supercite{WangFujun2004}。壁面函数法即在湍流核心区采用标准$k-\varepsilon$湍流模型求解，而在壁面区借助一组半经验公式，将壁面区与核心区的求解变量关联起来，这样不用对壁面区进行求解也可以得到与壁面区域相邻节点的变量值了。
 	\subsection{仿真软件}
@@ -202,7 +202,7 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 			入口相对湿度/\%	 & 82.3\\
 			薄膜壁面温度/℃	 & 39.5\\
 			薄膜顶棚温度/℃	 & 41.5\\
-			薄膜对流换热系数/（W·(m2·K)-1）$(\text{W} \cdot (\text{m}^{2} \cdot \text{K})^{-1})$ & 6.6\\
+			薄膜对流换热系数/ $(\text{W} \cdot (\text{m}^{2} \cdot \text{K})^{-1})$ & 6.6\\
 			土壤发射率 & 0.92\\
 			薄膜发射率 & 0.7\\
 			土壤吸收率 & 0.88\\
