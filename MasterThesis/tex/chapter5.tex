@@ -55,7 +55,7 @@
 
 \section{机械通风优化设计}
 	\subsection{机械通风参数优化}
-本文主要分析开启风机个数、入口温度、温室长度和环境温度变化（即相对于表\ref{tab:basicParameters}室内地面温度、薄膜壁面温度和薄膜顶棚温度变化）对于温室机械通风降温效果的影响。为分析这些因素的影响，本文控制不同因素变量的变化，共进行了12组仿真计算，各组的参数设置如\ref{tab:cases}所示，其它基本参数每组保持不变，详情如表\ref{tab:basicParameters}所示。
+本文主要分析开启风机个数、入口温度、温室长度和环境温度变化（即相对于表\ref{tab:basicParameters}室内地面温度、薄膜壁面温度和薄膜顶棚温度变化）对于温室机械通风降温效果的影响。为分析这些因素的影响，本文控制不同因素变量的变化，共进行了12组仿真计算，各组的参数设置如表\ref{tab:cases}所示，其它基本参数每组保持不变，详情如表\ref{tab:basicParameters}所示。
 
 		\begin{table}[!htbp]
   			\centering
@@ -117,9 +117,9 @@
 	在长时间连续降温的过程中，开始阶段的快速降温的能耗可忽略，因此选取稳定阶段，即600 s以后的两个完整周期评价不同控制策略的效果，结果如表\ref{tab:strategies}所示。
 	
 		\begin{table}[!htbp]
+			\bicaption[tab:strategies]{不同控制策略结果比较}{不同控制策略结果比较}{Table}{Comparison of results with different control strategies}
   			\centering
-  			 \begin{threeparttable}[b]
-  			\bicaption[tab:strategies]{不同控制策略结果比较}{不同控制策略结果比较}{Table}{Comparison of results with different control strategies}
+  			\begin{threeparttable}[b]
   			\begin{tabular}{cccc} \toprule
 			参数 & 策略1 & 策略2 & 策略3\\ \midrule
 			风机数量/个 & 10 & 10 & 4\\
@@ -127,11 +127,11 @@
 			等效风机数量/个 & 10 & 5.3 & 4\\
 			平均温度/℃ & 30.88 & 31.82 & 31.09\\
 			最高温度/℃ & 30.88 & 32.59 & 31.09\\
-			温度稳定性\tnote{2}/℃ & <0.1 & <0.43 & <0.1\\ \bottomrule
+			温度稳定性\tnote{2} \hspace{1mm} /℃ & <0.1 & <0.43 & <0.1\\ \bottomrule
  			\end{tabular}
  			\begin{tablenotes}
-    			\item [1] 间歇比指风机开启时间的占比。
-    			\item [2] 温度稳定性为完整周期内的温度均方根误差。
+    			\item [1] 风机开启时间的占比。
+    			\item [2] 完整周期内的温度均方根误差。
    			 \end{tablenotes}
   		\end{threeparttable}
 		\end{table}
