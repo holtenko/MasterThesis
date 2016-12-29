@@ -10,7 +10,7 @@
 
 \section{感知控制层设计与实现}
 	\subsection{传感器网络选择}
-温室内应用环境特殊，通常可供布置传感器的空间有限、温室内种植植物导致布线困难、温室面积较大从而监测范围大、农业生产环境不易值守且维护不便，传统的有线传感器网络对于温室内环境的监测不是一个很好的选择。针对温室内环境监测传感器布置困难、供电困难、搭建和维护成本限制大等因素，综合考虑，本系统对于温室内环境监测选用ZigBee无线传感器网络。
+温室内应用环境特殊，通常可供布置传感器的空间有限、温室内种植植物导致布线困难、温室面积较大从而监测范围大、农业生产环境不易值守且维护不便，传统的有线传感器网络对于温室内环境的监测不是一个很好的选择\supercite{YangFan2008} 。针对温室内环境监测传感器布置困难、供电困难、搭建和维护成本限制大等因素，综合考虑，本系统对于温室内环境监测选用ZigBee无线传感器网络。
 
 ZigBee技术是一种基于IEEE 802.15.4标准的局域网通信技术，是WSNs信息采集系统的一个重要组成部分，主要用于传感测量和控制应用，具有低功耗、低成本、复杂度低、短延迟、高容量、高安全性、自组网、可灵活扩展、使用免执照频段等优良性能。
 
@@ -18,10 +18,10 @@ ZigBee技术是一种基于IEEE 802.15.4标准的局域网通信技术，是WSNs
 
 两种网络均通过USB转串口与上层系统连接通讯。
 	\subsection{传感器网络硬件组成}
-	温室内无线传感器网络有三种类型的设备组成，分别为传感器节点、路由器节点和协调器。各节点的硬件设计采用模块化设计，各功能模块独立设计，然后通过标准化的接口连接组合成完整的节点，这样既便于维护和升级，同时可以减少主板体积。一个完整节点主要包括核心板模块、传感器模块和底板，其中传感器节点和路由器节点包含所有模块，协调器节点不包含传感器模块。
+	温室内无线传感器网络有三种类型的设备组成，分别为传感器节点、路由器节点和协调器\supercite{ZhouJianmin2011} 。各节点的硬件设计采用模块化设计，各功能模块独立设计，然后通过标准化的接口连接组合成完整的节点，这样既便于维护和升级，同时可以减少主板体积。一个完整节点主要包括核心板模块、传感器模块和底板，其中传感器节点和路由器节点包含所有模块，协调器节点不包含传感器模块。
 		\subsubsection{核心板模块}
 		核心板由Texas Instruments公司的CC2530 SoC芯片、外围电路及天线组成，如\ref{fig:CC2530}所示。CC2530是用于2.4GHz IEEE 802.15.4和ZigBee应用的片上解决方案，集成了一块增强型8051MCU和一块射频芯片，具有系统内可编程闪存和8-KB RAM、最大256KB的Flash；结合了TI在业内领先的高性能RF收发器，内置4个不同功能的定时器，高度集成的片上系统提供了丰富的外设，只需少量的外部器件即可开发丰富的应用，满足低功耗设计的需求，适用于温室的控制和测量。
-		\begin{figure}[!htp]
+		\begin{figure}[!htbp]
   			\centering
  			\includegraphics[width=0.5\textwidth]{05CoreBoard.png}
   			\bicaption[fig:CC2530]{CC2530核心板}{CC2530核心板}{Fig}{CC2530 core board}
@@ -35,7 +35,7 @@ ZigBee技术是一种基于IEEE 802.15.4标准的局域网通信技术，是WSNs
 		温室环境监测需要准确、稳定、线性较好的空气温湿度测量。针对农业生产高温、高湿、高辐射的特殊环境，要求传感器有一定的防水、防尘、抗干扰和低功耗能力。
 		
 		本系统空气温度测量采用能隙式测温元件，具有响应快、尺寸小、非线性小、低功耗等优点，但不耐高温，适用于中低温区域的环境温度测量，符合温室内空气温度的监测要求；空气湿度测量采用电容聚合体测湿元件，具有灵敏度高、线性度好、稳定性该、响应速度快、重复性较好、温度系数较低等优点，符合温室内空气湿度的监测要求。
- 		\begin{figure}[!htp]
+ 		\begin{figure}[!htbp]
   			\centering
  			\includegraphics[width=0.3\textwidth]{06SHT15.png}
   			\bicaption[fig:SHT15]{SHT15温湿度传感器}{SHT15温湿度传感器}{Fig}{SHT15 humidity and temperature sensor}
@@ -45,13 +45,13 @@ ZigBee技术是一种基于IEEE 802.15.4标准的局域网通信技术，是WSNs
 		(b) 土壤温湿度传感器
 		
 		一般情况下，温室内土壤温湿度分布均匀且变化缓慢，温室环境监测对于土壤温湿度的精度、灵敏度和测量范围要求不高，但是要求有较好的稳定性和线性，同时要可以适应各种复杂的土壤环境。
-  		\begin{figure}[!htp]
+  		\begin{figure}[!htbp]
   			\centering
  			\includegraphics[width=0.3\textwidth]{07SMS50.png}
   			\bicaption[fig:SMS50]{SMS-II-50土壤温湿度传感器}{SMS-II-50土壤温湿度传感器}{Fig}{SMS-II-50 soil moisture and temperature sensor}
 		\end{figure}
 		本系统选用SMS-II-50土壤水分温度传感器，如\ref{fig:SMS50}所示，集成了一个MS10土壤湿度传感器和一个热电阻温度传感器，包含电源稳压器和防反接电路，采用环氧树脂外壳，可以达到IP68级防护，可直接插入或埋入土壤中，具有良好的抗氧化和耐腐蚀能力，符合温室中恶劣环境的使用需求。具体性能参数如\ref{tab:SMS50}所示。		
-		\begin{table}[!hpb]
+		\begin{table}[!htbp]
   			\centering
   			\bicaption[tab:SMS50]{SMS-II-50性能参数表}{SMS-II-50性能参数表}{Table}{The performance parameters of SMS-II-50}
   			\begin{tabular}{lcc} \toprule
@@ -77,14 +77,14 @@ ZigBee技术是一种基于IEEE 802.15.4标准的局域网通信技术，是WSNs
 		
 		\subsubsection{室外微型气象站和太阳辐射传感器}
 		智能温室系统不仅需要对温室内的环境进行监测，还需要对室外的环境进行监测，两者结合才能更好地分析温室环境变化，更有效地对温室内环境进行控制。
-  		\begin{figure}[!htp]
+  		\begin{figure}[!htbp]
   			\centering
  			\includegraphics[width=0.6\textwidth]{08WeatherStation.png}
   			\bicaption[fig:WeatherStation]{MULTI-6P六要素微型气象站和GZ-300太阳辐射传感器}{MULTI-6P六要素微型气象站和GZ-300太阳辐射传感器}{Fig}{MULTI-6P 6-elements miniature weather station and GZ-300 solar light intensity meter}
 		\end{figure}
-		本系统选用智翔宇仪器MULTI-6P 六参数微型气象站和GZ-300 太阳辐射传感器，结构外观如\ref{fig:WeatherStation}所示，可同时测量七种参数，如表2所示。其中微型气象站包括采用超声波风速传感器、风向传感器，压阻式大气压传感器，二极管结电压空气温度传感器，电容式空气湿度传感器，压电式雨量传感器；太阳辐射传感器利用光电效应对太阳辐射强度进行测量；详细参数见\ref{tab:WeatherStation}。微型气象站和太阳辐射传感器都采用一体化设计的金属外壳，抗污染和耐腐蚀性能强，采用紧凑和轻量化结构设计，易于安装拆卸，不需要现场维护和校准，可适应不同的工作环境。两者均采用12-30 V直流电源供电，可同时提供数字和模拟两种信号，其中数字信号输出为RS-485总线输出，供电和信号输入输出均通过底部航空插头，防护等级达到IP65级。
+		本系统选用智翔宇仪器MULTI-6P 六参数微型气象站和GZ-300 太阳辐射传感器，结构外观如\ref{fig:WeatherStation}所示，可同时测量七种参数，如表2所示\supercite{SunYuguang2009}。其中微型气象站包括采用超声波风速传感器、风向传感器，压阻式大气压传感器，二极管结电压空气温度传感器，电容式空气湿度传感器，压电式雨量传感器；太阳辐射传感器利用光电效应对太阳辐射强度进行测量；详细参数见\ref{tab:WeatherStation}。微型气象站和太阳辐射传感器都采用一体化设计的金属外壳，抗污染和耐腐蚀性能强，采用紧凑和轻量化结构设计，易于安装拆卸，不需要现场维护和校准，可适应不同的工作环境。两者均采用12-30 V直流电源供电，可同时提供数字和模拟两种信号，其中数字信号输出为RS-485总线输出，供电和信号输入输出均通过底部航空插头，防护等级达到IP65级。
 		
-		\begin{table}[!hpb]
+		\begin{table}[!htbp]
   			\centering
   			\bicaption[tab:WeatherStation]{MULTI-6P和GZ-300参数}{MULTI-6P和GZ-300参数}{Table}{The performance parameters of the MULTI-6P and GZ-300}
   			\begin{tabular}{ccccc} \toprule
@@ -103,7 +103,7 @@ ZigBee技术是一种基于IEEE 802.15.4标准的局域网通信技术，是WSNs
 	ZigBee无线网络中的设备按其功能分为三种，即协调器、路由器和终端节点。协调器是整个无线网络的通讯中心，主要用来组建网络、维护并管理路由器和终端节点入网等行为；路由器负责数据路由和路径选择，可以通过它方便的扩展网络覆盖范围；终端节点主要负责具体的信息采集任务\supercite{FuLingfeng2016} 。终端节点和路由器通过无线信道向协调器上报传感数据，协调器再把接收的数据通过RS485总线上传至上层系统。
 	
 本系统的底层ZigBee无线传感器网络基于Z-Stack协议栈开发，开发人员可以直接调用协议栈提供的API来实现相应的功能而无需深入了解完整的ZigBee协议等，可以极大程度上为开发工作提供便利，减少开发时间。
-	\begin{figure}[!htp]
+	\begin{figure}[!htbp]
 		\centering
 	    \subfigure[协调器]{
 			\label{fig:zigbee:a} 
@@ -134,7 +134,7 @@ ZigBee技术是一种基于IEEE 802.15.4标准的局域网通信技术，是WSNs
 响应包为向上层数据反馈的数据，共5 byte，分别为起始符、长度位、功能码、校验码和终止符，均为1 byte。起始符和终止符为0x25和0x26，功能码0x01表示重置参数成功，0x02为有数据缓存完成，0x03为设置休眠时间成功，0x04为设置采样周期成功。
 
 采集包为传感器采集的数据包，详情如\ref{tab:sampling}所示。网络地址为节点在网络中由协调器分配的地址；设备ID为自定义的设备编号；状态位为设备的状态信息，从bit7到bit4分别对应电池状态、空气传感器状态、土壤传感器状态、光强传感器状态，其余待定，0为正常，1为异常；数据长度为数据的长度；数据为具体的数据数值，每5 byte表示一个参数的数值，以ASCII码传输和保存。
-		\begin{table}[!hpb]
+		\begin{table}[!htbp]
   			\centering
   			\bicaption[tab:sampling]{采集包格式}{采集包格式}{Table}{The format of sampling package}
   			\begin{tabular}{cccc} \toprule
@@ -161,14 +161,14 @@ ZigBee技术是一种基于IEEE 802.15.4标准的局域网通信技术，是WSNs
 
 	\subsection{控制模块}
 	感知控制层除了对温室环境进行监测之外，还需要对温室环境进行控制，主要通过控制温室内的作动器来实现。温室内作动器控制主要通过中央控制板完成，如\ref{fig:ControlBoard}所示为中央控制板及其功能框图，包括微控制器、RS485通讯接口、设备状态控制显示模块和电源管理模块。微控制器选用片上资源丰富STM32F103系列单片机，使用它的UART连接RS485模块完成与上层系统的通讯。设备控制利用继电器组实现。为保证设备的准确控制，控制板通过开关状态模块采集设备当前状态。控制板将当前设备状态与预设控制状态比对来分析现场设备或控制板的故障情况然后上报，以便系统能及时发现问题，满足本系统的自诊断需求。
-	\begin{figure}[!htp]
+	\begin{figure}[!htbp]
 		\centering
 		\includegraphics[width=0.7\textwidth]{09ControlBoard.png}
 		\bicaption[fig:ControlBoard]{中央控制板及其功能框图}{中央控制板及其功能框图}{Fig}{The photo and function diagram of the central control board}
 	\end{figure}
 	\subsection{图像采集模块}
 图像采集部分采用HIKVISION CSC4S51WEFR网络摄像头，如\ref{fig:Camera}所示，接入图像采集网关可直接在局域网内对温室进行视频监控，如果温室现场网络条件良好，可接入云端服务生成m3u8视频流，提供在线视频观看，对于部分温室现场网络条件欠佳，本系统将通过定时采集现场静态图片的方式提供图像，同时接入云端图片存储服务，并返回对应URL。
-	\begin{figure}[!htp]
+	\begin{figure}[!htbp]
 		\centering
 		\includegraphics[width=0.3\textwidth]{10Camera.png}
 		\bicaption[fig:Camera]{HIKVISION CSC4S51WEFR网络摄像头}{HIKVISION CSC4S51WEFR网络摄像头}{Fig}{HIKVISION CSC4S51WEFR web camera}
@@ -177,24 +177,24 @@ ZigBee技术是一种基于IEEE 802.15.4标准的局域网通信技术，是WSNs
 	\subsection{总体设计及技术简介}
 	本文智能温室中的网络传输层通过数据传输与同步系统实现，该系统可实现控制指令和反馈信息的双向传输，以及传感器监测数据的上传与同步。其中监测数据的同步模块大部分部署在云端服务器，另一部分以及其余模块均部署运行在搭载Linux操作系统的基于ARM Cortex-A53的微型计算机上，该计算机具有64位4核CPU，主频为1.2 GHz，1 GB LPDDR2内存，最大支持64 GB内存卡，同时支持以太网连接和Wi-Fi连接，自带蓝牙4.1模块，4个USB接口，40个GPIO引脚，完全可满足现场计算服务的性能和通讯需求。
 	
-本系统内所有程序均采用Java语言编写，为进行串口通讯引入RXTX，使用Spring进行依赖注入管理和AOP编程，选择MyBatis作为数据持久化框架，数据库采用MySQL，未来将考虑使用更加轻量级、更加适用于嵌入式系统的SQLite代替MySQL作为现场数据存储数据库。
+本系统内所有程序均采用Java语言编写，为进行串口通讯引入RXTX，使用Spring进行依赖注入管理和AOP编程 ，选择MyBatis作为数据持久化框架 ，数据库采用MySQL，未来将考虑使用更加轻量级、更加适用于嵌入式系统的SQLite代替MySQL作为现场数据存储数据库。
 
-Java是一种功能强大且简单易用的面向对象编程语言，开源社区活跃，拥有众多优秀的开源框架和类库，可以快速便捷地开发各种跨平台的应用程序。RXTX是一个可开源Java串口库，具有良好的跨平台性，且向下兼容javax.comm串口库。Spring是一个轻量级的依赖注入管理和面向切面编程的容器框架，可以简化企业级Java应用的开发，极大地提高开发者的开发效率。MyBatis是一款开源的优秀持久层框架，使用简单的注解或配置，即可将通过接口将Java中的POJOs映射成数据库中的记录。MySQL是一款开源的非常轻量级的关系型数据库管理系统，功能强大，性能良好，且具有较小的体积，在世界范围内得到广泛的应用。
+Java是一种功能强大且简单易用的面向对象编程语言，开源社区活跃，拥有众多优秀的开源框架和类库，可以快速便捷地开发各种跨平台的应用程序\supercite{ThinkingInJava}。RXTX是一个可开源Java串口库，具有良好的跨平台性，且向下兼容javax.comm串口库。Spring是一个轻量级的依赖注入管理和面向切面编程的容器框架，可以简化企业级Java应用的开发，极大地提高开发者的开发效率\supercite{spring}。MyBatis是一款开源的优秀持久层框架，使用简单的注解或配置，即可将通过接口将Java中的POJOs映射成数据库中的记录\supercite{mybatis}。MySQL是一款开源的非常轻量级的关系型数据库管理系统，功能强大，性能良好，且具有较小的体积，在世界范围内得到广泛的应用。
 
 	\subsection{控制信息解析传输}
 系统中的控制指令和反馈信息的双向传输，通过控制信息解析传输程序实现，该程序部署在Tomcat容器中。
 	
 该程序的工作流程如\ref{fig:control}所示：
-	\begin{figure}[!htp]
+	\begin{figure}[!htbp]
 		\centering
-		\includegraphics[width=0.8\textwidth]{control.png}
+		\includegraphics[width=0.7\textwidth]{control.png}
 		\bicaption[fig:control]{控制信息解析传输程序流程图}{控制信息解析传输程序流程图}{Fig}{Flow chart of control information transmission}
 	\end{figure}
 程序向外暴露RESTful WebService接口，为了保证系统控制的安全性，避免恶意操作和非法操作等，系统会对所有请求的来源和合法性进行判断，所有接口仅向云端服务器开放，即如果该请求不是来自于指定的云端服务器，或者请求是非法的，均会被视为无效请求，将被立即拒绝并返回相应的错误信息。随后系统会对请求进行身份和权限鉴定，以避免误操作可能对温室设备带来的损坏，如果请求发起者没有相关操作的权限，请求将会被拒绝并返回相应的错误信息。随后系统根据不同的请求类型分别执行相应的动作，若操作成功则返回成功响应，否则返回响应的错误信息并向管理员发送告警通知。
 
 	\subsection{数据采集上传}
 	传感器网络的数据监测和同步上传，通过数据采集上传程序实现，程序的具体工作流程如下：
-	\begin{figure}[!htp]
+	\begin{figure}[!htbp]
 		\centering
 		\includegraphics[width=1\textwidth]{thread/thread.png}
 		\bicaption[fig:thread]{数据采集上传程序流程图}{数据采集上传程序流程图}{Fig}{Flow chart of data sampling and uploading}
@@ -211,7 +211,7 @@ Java是一种功能强大且简单易用的面向对象编程语言，开源社�
 	
 	\subsection{数据同步}
 到目前为止所有的监测数据还都存储在温室群本地的现场微型计算机上，但是该现场微型计算机性能和存储空间有限，同时由于农业生产环境的限制，温室群所在地区网络环境一般较差，这给温室数据的远程获取带来了一定的阻碍，有可能会出现数据获取缓慢，甚至无法获取的情况，因此，本系统将所有监测数据同步到云端数据中心的数据库中，所有应用对于数据的获取将全部从云端数据库获取，这就解决了上述问题。
-	\begin{figure}[!htp]
+	\begin{figure}[!htbp]
 		\centering
 		\includegraphics[width=0.8\textwidth]{11Sync.png}
 		\bicaption[fig:Sync]{数据同步过程}{数据同步过程}{Fig}{Process of the data synchronization}
@@ -223,19 +223,19 @@ Java是一种功能强大且简单易用的面向对象编程语言，开源社�
 	\subsection{数据中心}
 本系统的数据中心基于Hadoop构建，其中海量实时数据库使用HBase，数据仓库使用Hive，并使用MySQL作为近期历史数据的存储数据库。
 
-Hadoop是一个分布式系统基础架构，可以对海量数据进行分布式的存储和处理，稳定可靠、易于扩展、性能突出、高度容错且成本低廉，是存储海量温室数据的较好的选择。HBase是一个面向列的NoSQL数据库，为了解决HDFS难以随机读写和缺乏实时性而出现。Hive是一个数据仓库工具，可以将SQL语句转换为MapReduce任务，极大程度地减少了开发人员的MapReduce jobs的编写工作。
-	\begin{figure}[!htp]
+Hadoop是一个分布式系统基础架构，可以对海量数据进行分布式的存储和处理，稳定可靠、易于扩展、性能突出、高度容错且成本低廉，是存储海量温室数据的较好的选择\supercite{hadoop} 。HBase是一个面向列的NoSQL数据库，为了解决HDFS难以随机读写和缺乏实时性而出现\supercite{hbase} 。Hive是一个数据仓库工具，可以将SQL语句转换为MapReduce任务，极大程度地减少了开发人员的MapReduce jobs的编写工作\supercite{hive} 。
+	\begin{figure}[!htbp]
 		\centering
 		\includegraphics[width=0.5\textwidth]{12Data.png}
 		\bicaption[fig:Data]{ MySQL与Hive、HBase之间的迁移关系}{ MySQL与Hive、HBase之间的迁移关系}{Fig}{The relationship among MySQL and Hive/HBase}
 	\end{figure}
-数据中心通过MySQL接收下层系统同步上传的数据，以一个温室群布置30个终端节点和路由器节点，每10 min采集一组数据为例，仅传感监测数据每天可产生2.2×104条记录，每年可产生 8×106条记录，室外气象参数监测每天也将产生大量的数据，同时温室控制每天还将产生大量控制日志记录，这样一个温室群每年将产生数千万条数据，多个温室群每年将产生数亿条数据，这会严重影响MySQL工作效率，虽然进行分库分表操作可一定程度上缓解这种问题，但是将增加数据库复杂度，而且考虑到在实际生产中，经常访问的均为近期的监测数据，大量历史数据仅需用于后期的查询、导出和分析。因此，本系统定期地将把MySQL中历史数据通过Sqoop工具迁移至HBase和Hive中保存，迁移关系如\ref{fig:Data}所示，MySQL数据库中仅保存温室近期数据。HBase和Hive中的历史数据将用于后期数据分析和控制策略的机器学习。
+数据中心通过MySQL接收下层系统同步上传的数据，以一个温室群布置30个终端节点和路由器节点，每10 min采集一组数据为例，仅传感监测数据每天可产生2.2×104条记录，每年可产生 8×106条记录，室外气象参数监测每天也将产生大量的数据，同时温室控制每天还将产生大量控制日志记录，这样一个温室群每年将产生数千万条数据，多个温室群每年将产生数亿条数据，这会严重影响MySQL工作效率，虽然进行分库分表操作可一定程度上缓解这种问题，但是将增加数据库复杂度，而且考虑到在实际生产中，经常访问的均为近期的监测数据，大量历史数据仅需用于后期的查询、导出和分析。因此，本系统定期地将把MySQL中历史数据通过Sqoop工具\supercite{sqoop} 迁移至HBase和Hive中保存，迁移关系如\ref{fig:Data}所示，MySQL数据库中仅保存温室近期数据。HBase和Hive中的历史数据将用于后期数据分析和控制策略的机器学习。
  
 	\subsection{WEB服务器}
 温室环境监测数据采集完成并同步到云端的数据中心，系统还需要向外界提供相关的服务，包括提供温室环境远程监测查看、温室环境远程控制、温室现场视频或图像查看等服务，因此需要WEB服务器及其相关服务端程序。
 
 本系统选用商用云服务器作为WEB服务器，可提供7×24小时不间断服务保证，简单高效，处理能力和存储空间可弹性伸缩，免除了机房维护的问题，降低了运维成本。服务器上运行64位CentOS 6.5操作系统，CentOS是当今最流行的服务端Linux发行版之一，由Red Hat Enterprise Linux依照开放源代码规定公布出的源代码编译而成，具有高度的稳定性和可靠性、良好的性能，因此非常合适作为服务端操作系统。
-	\begin{figure}[!htp]
+	\begin{figure}[!htbp]
 		\centering
 		\includegraphics[width=0.8\textwidth]{13Web.png}
 		\bicaption[fig:Web]{WEB服务程序工作流程}{WEB服务程序工作流程}{Fig}{Workflow of the webservice}
@@ -265,7 +265,7 @@ WEB页面使用HTML5 + CSS3 + JavaScript开发，使用Node.js作为JavaScript�
 其中Node.js是一个基于Chrome V8 引擎的轻量高效的JavaScript 运行环境。React是Facebook开源的一款前端JavaScript MVC框架，主要解决View层的开发，官方给它的定义是一套用来生成用户界面的JavaScript库，为了配合React开发，前端选用React Router作为路由库，用以管理资源路径，实现组件的切换和状态的变化。为了确保前端页面状态的可预测性，使用Redux作为前端页面容器。Webpack 是目前非常流行的开发便捷、扩展性强的前端资源模块加载器和打包工具，利用Webpack可以按照依赖关系和相关规则将松散的模块打包成符合生产环境部署的前端资源，还可以将按需加载的模块进行代码分隔，等到实际需要的时候再异步加载，通过加载器的转换，不仅仅是JS，任何形式的前端资源都可以视作模块，比如ES6模块、CSS、图片、JSON等。Sass是一种成熟、稳定而且非常强大的专业级CSS扩展语言，完全兼容CSS语法，同时提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和易维护。AJAX即“Asynchronous JavaScript And XML（异步JavaScript和XML）”，是指一种用来创建交互式网页应用的网页开发技术，它使得页面可以异步更新，即只对其中的局部进行刷新而无需全部重新刷新。JSON(JavaScript Object Notation) 是一种数据交换格式，在让人可以非常容易读写的同时还非常便于机器的解析生成。
 
 移动客户端使用React Native开发，React Native同样是Facebook开源的一套前端应用技术框架，开发者通过React Native可利用JS和React创建原生移动应用，并且可复用大部分代码同时生成Android平台和IOS平台应用。移动应用同样调用应用层提供的接口获得返回数据，然后经过解析展示到界面。
-	\begin{figure}[!htp]
+	\begin{figure}[!htbp]
 		\centering
 	    \subfigure[温室选择页]{
 			\label{fig:ui:a} 

@@ -21,7 +21,7 @@
 
 \section{智能温室远程监测与控制系统应用}
 本文设计并实现的基于农业物联网的智能温室监测与控制系统在实验温室，即上海市崇明区连栋塑料温室(东经121.74，北纬31.50)，进行了实施运行。现场微型计算机如图30所示，协调器如\ref{fig:real:a}所示，路由器节点封装如\ref{fig:real:b}所示，终端节点封装如\ref{fig:real:c}所示。
-\begin{figure}[!htp]
+\begin{figure}[!htbp]
 	\centering
     \subfigure[协调器]{
 		\label{fig:real:a} 
@@ -40,7 +40,7 @@
 根据通过仿真模型得到的温室监测点位置的优化结果，系统确定温室监测点布置方案：在实验温室内第1、2、4、5栋的中间位置各布置一个终端节点，用以监测温室内的空气温湿度分布和变化；在温室的中心位置布置一个路由器节点，用以监测温室内的土壤温湿度和光照强度，路由器节点还带有空气温湿度传感器，可以根据该节点的数据判断温室内最高温度的阈值，此外路由器节点还可以对无线传感器网络起到扩展的作用，从而能够监测更大范围内的温室，使距离较远的监测点能够接入网络，保证网络的覆盖范围和稳定性。此次实施运行，还在连栋塑料温室旁的9个单栋薄膜温室内各布置一个监测点，大部分为终端节点，少数为路由器节点，以保证网络的覆盖范围和稳定性。
 
 系统运行期间运行稳定正常，无线传感器网络传输稳定可靠，温室内外数据采集准确正常，响应迅速，数据上传同步延迟在1s以内，控制指令下达准确迅速，延迟在5s以内，控制状态获取正常。数据中心工作正常，未发生慢查询或查询异常。云端WEB服务器及服务端程序运行稳定正常，接口响应迅速，数据返回完整准确。如图32所示为Android平台上的终端程序截图，IOS平台和WEB页面显示完全相同，程序运行正常，数据获取与解析正常。现场图像采集设备工作正常，视频延时在10 s以内，显示正常如\ref{fig:snapshot}所示。
-	\begin{figure}[!htp]
+	\begin{figure}[!htbp]
 		\centering
 		\includegraphics[width=0.19\textwidth]{android/home.png}
 		\includegraphics[width=0.19\textwidth]{android/detail.png}
@@ -54,7 +54,7 @@
 \section{机械通风优化设计}
 	\subsection{机械通风参数优化}
 本文主要分析开启风机个数、入口温度、温室长度和环境温度变化（即相对于表5室内地面温度、薄膜壁面温度和薄膜顶棚温度变化）对于温室机械通风降温效果的影响。为分析这些因素的影响，本文控制不同因素变量的变化，共进行了12组仿真计算，各组的参数设置如\ref{tab:cases}所示，其它基本参数每组保持不变，详情如表5所示。
-		\begin{table}[!htp]
+		\begin{table}[!htbp]
   			\centering
   			\bicaption[tab:cases]{仿真方案参数设置}{仿真方案参数设置}{Table}{Parameters in different simulation cases}
   			\begin{tabular}{ccccc} \toprule
@@ -74,7 +74,7 @@
  			\end{tabular}
 		\end{table}
 	如\ref{fig:cases}所示为不同仿真方案下，植物冠层即截面L空气温度仿真平均值的变化曲线。
-		\begin{figure}[!htp]
+		\begin{figure}[!htbp]
 		\centering
 		\subfigure[不同风机开启情况]{
 			\label{fig:cases:a}
@@ -106,7 +106,7 @@
 	图34所示为不同控制策略下，植物冠层即截面L空气温度仿真平均值的变化曲线。策略1为开启10台风机持续工作；策略2为开启10台风机降温至稳态温度后关闭风机，待温度回升到一定程度后再次开启10台风机降温，为保证温室平均气温低于32℃，本文在温度回升至32.59℃时即再次开启风机进行降温；策略3为开启10台风机迅速降温至稳态温度后只保留4台风机开启维持降温效果。
 	
 	在长时间连续降温的过程中，开始阶段的快速降温的能耗可忽略，因此选取稳定阶段，即600 s以后的两个完整周期评价不同控制策略的效果，结果如表7所示。
-		\begin{table}[!htp]
+		\begin{table}[!htbp]
   			\centering
   			\bicaption[tab:strategies]{不同控制策略结果比较}{不同控制策略结果比较}{Table}{Comparison of results with different control strategies}
   			\begin{tabular}{cccc} \toprule
