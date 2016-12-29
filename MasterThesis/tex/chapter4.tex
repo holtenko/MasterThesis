@@ -60,9 +60,9 @@ OKUSHIMA等\supercite{Okushima1989} 首次应用CFD研究温室的通风问题�
 		\label{eqn:dongliang}
 		\left\{
 		\begin{aligned}
-		\frac{\partial \rho u}{\partial t}+\nabla \cdot (\rho u \mathbf{u}) = - \frac{p \rho}{\partial x}+\frac{\partial \tau_{xx}}{\partial x}+\frac{\partial \tau_{yx}}{\partial y}+\frac{\partial \tau_{zx}}{\partial z} + F_x \\
-		\frac{\partial \rho v}{\partial t}+\nabla \cdot (\rho v \mathbf{u}) = - \frac{p \rho}{\partial y}+\frac{\partial \tau_{xy}}{\partial x}+\frac{\partial \tau_{yy}}{\partial y}+\frac{\partial \tau_{zy}}{\partial z} + F_y \\
-		\frac{\partial \rho w}{\partial t}+\nabla \cdot (\rho w \mathbf{u}) = - \frac{p \rho}{\partial z}+\frac{\partial \tau_{xz}}{\partial x}+\frac{\partial \tau_{yz}}{\partial y}+\frac{\partial \tau_{zz}}{\partial z} + F_z 
+		\frac{\partial \rho u}{\partial t}+\nabla \cdot (\rho u \mathbf{u}) = - \frac{\partial p}{\partial x}+\frac{\partial \tau_{xx}}{\partial x}+\frac{\partial \tau_{yx}}{\partial y}+\frac{\partial \tau_{zx}}{\partial z} + F_x \\
+		\frac{\partial \rho v}{\partial t}+\nabla \cdot (\rho v \mathbf{u}) = - \frac{\partial p}{\partial y}+\frac{\partial \tau_{xy}}{\partial x}+\frac{\partial \tau_{yy}}{\partial y}+\frac{\partial \tau_{zy}}{\partial z} + F_y \\
+		\frac{\partial \rho w}{\partial t}+\nabla \cdot (\rho w \mathbf{u}) = - \frac{\partial p}{\partial z}+\frac{\partial \tau_{xz}}{\partial x}+\frac{\partial \tau_{yz}}{\partial y}+\frac{\partial \tau_{zz}}{\partial z} + F_z 
 		\end{aligned}
 		\right.
 	\end{equation}
@@ -73,9 +73,9 @@ OKUSHIMA等\supercite{Okushima1989} 首次应用CFD研究温室的通风问题�
 		\label{eqn:ns}
 		\left\{
 		\begin{aligned}
-		\frac{\partial \rho u}{\partial t}+\nabla \cdot (\rho u \mathbf{u}) =- \frac{p \rho}{\partial x}+\nabla \cdot (\mu \cdot \nabla u ) + S_x \\
-		\frac{\partial \rho v}{\partial t}+\nabla \cdot (\rho v \mathbf{u}) =- \frac{p \rho}{\partial y}+\nabla \cdot (\mu \cdot \nabla v ) + S_y \\
-		\frac{\partial \rho w}{\partial t}+\nabla \cdot (\rho w \mathbf{u}) =- \frac{p \rho}{\partial z}+\nabla \cdot (\mu \cdot \nabla w ) + S_z 
+		\frac{\partial \rho u}{\partial t}+\nabla \cdot (\rho u \mathbf{u}) =- \frac{\partial p}{\partial x}+\nabla \cdot (\mu \cdot \nabla u ) + S_x \\
+		\frac{\partial \rho v}{\partial t}+\nabla \cdot (\rho v \mathbf{u}) =- \frac{\partial p}{\partial y}+\nabla \cdot (\mu \cdot \nabla v ) + S_y \\
+		\frac{\partial \rho w}{\partial t}+\nabla \cdot (\rho w \mathbf{u}) =- \frac{\partial p}{\partial z}+\nabla \cdot (\mu \cdot \nabla w ) + S_z 
 		\end{aligned}
 		\right.
 	\end{equation}
