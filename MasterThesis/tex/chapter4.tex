@@ -171,8 +171,6 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 
 	\subsection{边界条件}
 	为获得温室机械通风过程的初始状态，从而研究机械通风过程及其升温过程，本文仿真过程分为湿帘风机关闭状态和开启状态。前者温室处于密闭环境，风机和湿帘处于关闭状态，用以计算自然对流状态下温室内的状态；后者风机和湿帘处于开启状态，进行机械通风过程仿真，用以计算湿帘风机对温室内环境分布和变化的影响。
-	
-本次仿真以温室内的空气为主要研究对象，所涉及的边界条件包括室外环境参数、温室四周薄膜和顶棚、风机、湿帘、室内地面等，设置见表\ref{tab:boundary}。由于关注的仿真过程时间较短，故可以忽略在此期间内各边界条件基本参数的变化，各算例基本参数设置见表\ref{tab:basicParameters}。
 
 		\begin{table}[!htbp]
   			\centering
@@ -191,6 +189,8 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 												  & 湿帘 & 速度入口	 & 温度 & 浓度\\ \bottomrule
  			\end{tabular}
 		\end{table}	
+本次仿真以温室内的空气为主要研究对象，所涉及的边界条件包括室外环境参数、温室四周薄膜和顶棚、风机、湿帘、室内地面等，设置见表\ref{tab:boundary}。由于关注的仿真过程时间较短，故可以忽略在此期间内各边界条件基本参数的变化，各算例基本参数设置见表\ref{tab:basicParameters}。
+
 		\begin{table}[!htbp]
   			\centering
   			\bicaption[tab:basicParameters]{基本参数设置}{基本参数设置}{Table}{Common parameters in the CFD model}
@@ -254,7 +254,7 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 
 	\begin{figure}[!htbp]
 		\centering
-		\includegraphics[width=0.7\textwidth]{18Distribution.png}
+		\includegraphics[width=0.6\textwidth]{18Distribution.png}
 		\bicaption[fig:Distribution]{温室内传感器节点分布图}{温室内传感器节点分布图}{Fig}{Distribution of sensors in the greenhouse}
 	\end{figure}
 实验期间，温室内所有传感器测点每20 s记录一次数据。温室内外共布置30个测量节点，具体分布如图\ref{fig:Distribution}所示。传感器编号方式如图\ref{fig:Distribution}所示，距离湿帘4、12、24 m位置处分别编号A、B、C，距离地面1.3 m和2 m位置处分别编号H、L，自北向南每栋编号1、2、3、4、5，除HA1、HC1、HA5、HC5外，其余位置各布置一个节点；另外分别在紧邻湿帘内外正中间位置处，东西两侧各布置一个节点，如图\ref{fig:Distribution}所示的P1、P2、P3、P4点。为避免温室等建筑物对于室外气象站的影响，室外气象站布置在距离温室10 m处的空旷区域，安装在距离地面10 m处的位置，距离温室较远且体积较小，因此未在图中标出。
@@ -278,15 +278,15 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 		\centering
 		\subfigure[截面2温度实测值]{
 			\label{fig:Result:a}
-			\includegraphics[width=0.7\textwidth]{result/01.png}
+			\includegraphics[width=0.8\textwidth]{result/01.png}
 		}
 		\subfigure[截面B温度实测值]{
 			\label{fig:Result:b}
-			\includegraphics[width=0.7\textwidth]{result/02.png}
+			\includegraphics[width=0.8\textwidth]{result/02.png}
 		}
 		\subfigure[风机开启情况]{
 			\label{fig:Result:c}
-			\includegraphics[width=0.7\textwidth]{result/03.png}
+			\includegraphics[width=0.8\textwidth]{result/03.png}
 		}
  		\bicaption[fig:Result]{温室内植物冠层温度实测值}{温室内植物冠层温度实测值}{Fig}{Measured temperature inside the greenhouse at Section L}
  	\end{figure}
@@ -342,7 +342,7 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 
 	\begin{figure}[!htbp]
 		\centering
-		\includegraphics[width=0.8\textwidth]{23VL.png}
+		\includegraphics[width=0.7\textwidth]{23VL.png}
 		\bicaption[fig:VL]{截面L速度瞬态分布云图}{截面L速度瞬态分布云图}{Fig}{Transient distribution of velocity at Section L}
 	\end{figure}
 图\ref{fig:T2}所示为实验条件下机械通风过程中截面2的温度瞬态分布云图。从图中可以看出：整个通风过程中，地面附近温度相对较高，主要因为这些地方受到强烈的太阳辐射的影响；顶棚附近温度较高，主要因为受太阳辐射和热浮力的共同影响。同时还可以观察到机械通风过程中，风机将温室内热空气抽出产生负压，空气从湿帘处进入温室，经过湿帘将显热转化为潜热形成温度较低的冷空气，形成的冷空气在向前推进的过程中，冷空气会包裹温室内原有的暖空气形成温度漩涡，未及时推动的暖空气会被卷入其中，在冷空气流中不断进行热交换并向前移动，直至到达风机端处排出。
@@ -356,7 +356,7 @@ COMSOL Multiphysics是当今世界第一款真正的任意多物理场直接耦�
 
 	\begin{figure}[!htbp]
 		\centering
-		\includegraphics[width=0.7\textwidth]{25TL.png}
+		\includegraphics[width=0.6\textwidth]{25TL.png}
 		\bicaption[fig:TL]{截面L温度瞬态分布云图}{截面L温度瞬态分布云图}{Fig}{Transient distribution of temperature at Section L}
 	\end{figure}
 	

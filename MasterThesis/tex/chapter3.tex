@@ -197,7 +197,7 @@ Java是一种功能强大且简单易用的面向对象编程语言，开源社�
 
 	\begin{figure}[!htbp]
 		\centering
-		\includegraphics[width=0.7\textwidth]{control.png}
+		\includegraphics[width=0.8\textwidth]{control.png}
 		\bicaption[fig:control]{控制信息解析传输程序流程图}{控制信息解析传输程序流程图}{Fig}{Flow chart of control information transmission}
 	\end{figure}
 程序向外暴露RESTful WebService接口，为了保证系统控制的安全性，避免恶意操作和非法操作等，系统会对所有请求的来源和合法性进行判断，所有接口仅向云端服务器开放，即如果该请求不是来自于指定的云端服务器，或者请求是非法的，均会被视为无效请求，将被立即拒绝并返回相应的错误信息。随后系统会对请求进行身份和权限鉴定，以避免误操作可能对温室设备带来的损坏，如果请求发起者没有相关操作的权限，请求将会被拒绝并返回相应的错误信息。随后系统根据不同的请求类型分别执行相应的动作，若操作成功则返回成功响应，否则返回响应的错误信息并向管理员发送告警通知。
