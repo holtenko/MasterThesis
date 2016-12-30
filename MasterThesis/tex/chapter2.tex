@@ -56,7 +56,7 @@
 	\begin{figure}[!htbp]
 		\centering
 		\includegraphics[width=0.7\textwidth]{04Sensing.png}
-		\bicaption[fig:Sensing]{智能温室系统整体架构}{智能温室系统整体架构}{Fig}{Architecture of the intelligent greenhouse system.}
+		\bicaption[fig:Sensing]{感知控制层设计}{感知控制层设计}{Fig}{Design of the sensing control layer}
 	\end{figure}
 
 监测到当前温室环境后，系统需要通过控制温室内作动器的动作对温室内的环境加以控制，从而达到让温室环境更加适宜温室内作物生长的目的。因此本层还包括用于控制温室内作动器的中央控制板。为降低成本的同时提高设备的可靠性，本系统适合采用嵌入式计算机提供现场计算服务，同时兼用作网关服务，如基于ARM的微型计算机等。另外，为了增加对温室内环境的直观感知，本层添加了图像采集模块，包括图像采集设备和图像传输网关，该模块可在需要视频或图像监测的温室内使用。
